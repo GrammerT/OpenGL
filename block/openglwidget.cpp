@@ -1,15 +1,36 @@
 #include "openglwidget.h"
 #include <QKeyEvent>
+#include "glut.h"
 
 OpenglWidget::OpenglWidget(QWidget *parent)
     :QOpenGLWidget(parent)
     ,m_Step(0)
 {
-    m_lightPos       =     {-80.0f,120.0f,100.0f,0.0f};
-    m_lightAmbient   = {0.2f,0.2f,0.2f,1.0f};
-    m_lightDiffuse   = {0.7f,0.7f,0.7f,1.0f};
-    m_lightSpecular  = {0.9f, 0.9f, 0.9f};
-    m_materialColor  = {0.8f, 0.0f, 0.0f};
+    m_lightPos[0] = -80.0f;
+    m_lightPos[1] = 120.0f;
+    m_lightPos[2] = 100.0f;
+    m_lightPos[3] = 0.0f;
+
+    m_lightAmbient[0]   = 0.2f;
+    m_lightAmbient[1]   = 0.2f;
+    m_lightAmbient[2]   = 0.2f;
+    m_lightAmbient[3]   = 1.0f;
+
+    m_lightDiffuse[0]     = 0.7f;
+    m_lightDiffuse[1]     = 0.7f;
+    m_lightDiffuse[2]     = 0.7f;
+    m_lightDiffuse[3]     = 1.0f;
+
+
+    m_lightSpecular[0]   = 0.9f;
+    m_lightSpecular[1]   = 0.9f;
+    m_lightSpecular[3]   = 0.9f;
+
+    m_materialColor[0]   = 0.8f;
+    m_materialColor[1]   = 0.0f;
+    m_materialColor[2]   = 0.0f;
+
+
     m_ground.push_back(0.0f);
     m_ground.push_back(-25.0f);
     m_ground.push_back(0.0f);
@@ -22,10 +43,19 @@ OpenglWidget::OpenglWidget(QWidget *parent)
 
 }
 
-void OpenglWidget::initializeOpenGLFunctions()
+void OpenglWidget::initializeGL()
 {
+    initializeOpenGLFunctions();
 
+    glClearColor(0, 0, 0, 1);
+
+    // Enable depth buffer
+    glEnable(GL_DEPTH_TEST);
+
+    // Enable back face culling
+    glEnable(GL_CULL_FACE);
 }
+
 
 void OpenglWidget::paintGL()
 {
@@ -89,10 +119,10 @@ void OpenglWidget::paintGL()
     // Just draw the wire framed cube
     case 0:
     {
-//        glutWireCube(50.0f);
+        glutWireCube(50.0f);
         break;
     }
-     /*
+
     // Same wire cube with hidden line removal simulated
     case 1:
     {
@@ -135,9 +165,9 @@ void OpenglWidget::paintGL()
         glVertex3f(25.0f,-25.0f,-25.0f);
         glVertex3f(25.0f,-25.0f,25.0f);
         glEnd();
-
         break;
     }
+    /*
     // Uniform colored surface, looks 2D and goofey
     case 2:
     {
