@@ -1,0 +1,144 @@
+﻿生成启动时间为 2018/8/20 9:55:44。
+     1>项目“F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\glut32.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\include /Zi /nologo /W3 /WX- /O2 /Ob1 /Oy- /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D GLUT32_EXPORTS /D _VC80_UPGRADE=0x0600 /D _WINDLL /D _MBCS /UGLUT_USE_SGI_OPENGL /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Release/" /Fd".\Release/vc120.pdb" /Gd /TC /analyze- /errorReport:prompt glut_8x13.c glut_9x15.c glut_bitmap.c glut_bwidth.c glut_cindex.c glut_cmap.c glut_cursor.c glut_dials.c glut_dstr.c glut_event.c glut_ext.c glut_fcb.c glut_fullscrn.c glut_gamemode.c glut_get.c glut_glxext.c glut_hel10.c glut_hel12.c glut_hel18.c glut_init.c glut_input.c glut_joy.c glut_key.c glut_keyctrl.c glut_keyup.c glut_mesa.c glut_modifier.c glut_mroman.c glut_overlay.c glut_roman.c glut_shapes.c glut_space.c glut_stroke.c glut_swap.c glut_swidth.c glut_tablet.c glut_teapot.c glut_tr10.c glut_tr24.c glut_util.c glut_vidresize.c glut_warp.c glut_win.c glut_winmisc.c win32_glx.c win32_menu.c win32_util.c win32_winproc.c win32_x11.c
+         glut_8x13.c
+         glut_9x15.c
+         glut_bitmap.c
+         glut_bwidth.c
+         glut_cindex.c
+         glut_cmap.c
+         glut_cursor.c
+         glut_dials.c
+         glut_dstr.c
+     1>glut_dstr.c(1216): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1219): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1230): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>glut_dstr.c(1241): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1249): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+         glut_event.c
+         glut_ext.c
+         glut_fcb.c
+         glut_fullscrn.c
+         glut_gamemode.c
+     1>glut_gamemode.c(514): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(517): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(528): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>glut_gamemode.c(531): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(539): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+         glut_get.c
+         glut_glxext.c
+         glut_hel10.c
+         glut_hel12.c
+         glut_hel18.c
+         glut_init.c
+         正在生成代码...
+         正在编译...
+         glut_input.c
+         glut_joy.c
+         glut_key.c
+         glut_keyctrl.c
+         glut_keyup.c
+         glut_mesa.c
+     1>glut_mesa.c(34): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h(462) : 参见“getenv”的声明
+         glut_modifier.c
+         glut_mroman.c
+         glut_overlay.c
+         glut_roman.c
+         glut_shapes.c
+         glut_space.c
+         glut_stroke.c
+         glut_swap.c
+         glut_swidth.c
+         glut_tablet.c
+         glut_teapot.c
+         glut_tr10.c
+         glut_tr24.c
+         glut_util.c
+     1>glut_util.c(27): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         正在生成代码...
+         正在编译...
+         glut_vidresize.c
+         glut_warp.c
+         glut_win.c
+         glut_winmisc.c
+         win32_glx.c
+         win32_menu.c
+     1>win32_menu.c(410): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(245) : 参见“strdup”的声明
+     1>win32_menu.c(449): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(245) : 参见“strdup”的声明
+         win32_util.c
+         win32_winproc.c
+         win32_x11.c
+         正在生成代码...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D NDEBUG /D _VC80_UPGRADE=0x0600 /l"0x0409" /nologo /fo".\Release\glut.res" glut.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Release/glut32.dll" /INCREMENTAL:NO /NOLOGO odbc32.lib odbccp32.lib winmm.lib glu32.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:glut32.lib /DEF:".\glut.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\Release/glut32.pdb" /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Release/glut32.lib" /MACHINE:X86 /SAFESEH /DLL .\Release\glut.res
+         .\Release/glut_8x13.obj
+         .\Release/glut_9x15.obj
+         .\Release/glut_bitmap.obj
+         .\Release/glut_bwidth.obj
+         .\Release/glut_cindex.obj
+         .\Release/glut_cmap.obj
+         .\Release/glut_cursor.obj
+         .\Release/glut_dials.obj
+         .\Release/glut_dstr.obj
+         .\Release/glut_event.obj
+         .\Release/glut_ext.obj
+         .\Release/glut_fcb.obj
+         .\Release/glut_fullscrn.obj
+         .\Release/glut_gamemode.obj
+         .\Release/glut_get.obj
+         .\Release/glut_glxext.obj
+         .\Release/glut_hel10.obj
+         .\Release/glut_hel12.obj
+         .\Release/glut_hel18.obj
+         .\Release/glut_init.obj
+         .\Release/glut_input.obj
+         .\Release/glut_joy.obj
+         .\Release/glut_key.obj
+         .\Release/glut_keyctrl.obj
+         .\Release/glut_keyup.obj
+         .\Release/glut_mesa.obj
+         .\Release/glut_modifier.obj
+         .\Release/glut_mroman.obj
+         .\Release/glut_overlay.obj
+         .\Release/glut_roman.obj
+         .\Release/glut_shapes.obj
+         .\Release/glut_space.obj
+         .\Release/glut_stroke.obj
+         .\Release/glut_swap.obj
+         .\Release/glut_swidth.obj
+         .\Release/glut_tablet.obj
+         .\Release/glut_teapot.obj
+         .\Release/glut_tr10.obj
+         .\Release/glut_tr24.obj
+         .\Release/glut_util.obj
+         .\Release/glut_vidresize.obj
+         .\Release/glut_warp.obj
+         .\Release/glut_win.obj
+         .\Release/glut_winmisc.obj
+         .\Release/win32_glx.obj
+         .\Release/win32_menu.obj
+         .\Release/win32_util.obj
+         .\Release/win32_winproc.obj
+         .\Release/win32_x11.obj
+     1>.\glut.def(1): warning LNK4017: DESCRIPTION 语句不支持目标平台；已忽略
+            正在创建库 .\Release/glut32.lib 和对象 .\Release/glut32.exp
+         glut32.vcxproj -> F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\.\Release\glut32.dll
+     1>已完成生成项目“F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\glut32.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:13.90
