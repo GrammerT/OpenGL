@@ -1,0 +1,268 @@
+﻿生成启动时间为 2018/8/20 9:51:54。
+     1>项目“F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\glut32.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\..\include /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D GLUT32_EXPORTS /D _VC80_UPGRADE=0x0600 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc120.pdb" /Gd /TC /errorReport:prompt glut_8x13.c glut_9x15.c glut_bitmap.c glut_bwidth.c glut_cindex.c glut_cmap.c glut_cursor.c glut_dials.c glut_dstr.c glut_event.c glut_ext.c glut_fcb.c glut_fullscrn.c glut_gamemode.c glut_get.c glut_glxext.c glut_hel10.c glut_hel12.c glut_hel18.c glut_init.c glut_input.c glut_joy.c glut_key.c glut_keyctrl.c glut_keyup.c glut_mesa.c glut_modifier.c glut_mroman.c glut_overlay.c glut_roman.c glut_shapes.c glut_space.c glut_stroke.c glut_swap.c glut_swidth.c glut_tablet.c glut_teapot.c glut_tr10.c glut_tr24.c glut_util.c glut_vidresize.c glut_warp.c glut_win.c glut_winmisc.c win32_glx.c win32_menu.c win32_util.c win32_winproc.c win32_x11.c
+         win32_x11.c
+         win32_winproc.c
+         win32_util.c
+         win32_menu.c
+     1>win32_menu.c(410): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(245) : 参见“strdup”的声明
+     1>win32_menu.c(449): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(245) : 参见“strdup”的声明
+         win32_glx.c
+         glut_winmisc.c
+     1>glut_winmisc.c(32): warning C4267: “=”: 从“size_t”转换到“unsigned long”，可能丢失数据
+         glut_win.c
+     1>glut_win.c(719): warning C4267: “=”: 从“size_t”转换到“unsigned long”，可能丢失数据
+         glut_warp.c
+         glut_vidresize.c
+         glut_util.c
+     1>glut_util.c(27): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : 参见“strcpy”的声明
+         glut_tr24.c
+         glut_tr10.c
+         glut_teapot.c
+         glut_tablet.c
+         glut_swidth.c
+         glut_swap.c
+         glut_stroke.c
+         glut_space.c
+         glut_shapes.c
+         glut_roman.c
+         正在生成代码...
+         正在编译...
+         glut_overlay.c
+         glut_mroman.c
+         glut_modifier.c
+         glut_mesa.c
+     1>glut_mesa.c(34): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h(462) : 参见“getenv”的声明
+         glut_keyup.c
+         glut_keyctrl.c
+         glut_key.c
+         glut_joy.c
+         glut_input.c
+         glut_init.c
+         glut_hel18.c
+         glut_hel12.c
+         glut_hel10.c
+         glut_glxext.c
+         glut_get.c
+         glut_gamemode.c
+     1>glut_gamemode.c(514): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(517): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(528): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : 参见“strcpy”的声明
+     1>glut_gamemode.c(531): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_gamemode.c(539): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+         glut_fullscrn.c
+         glut_fcb.c
+         glut_ext.c
+         glut_event.c
+         正在生成代码...
+         正在编译...
+         glut_dstr.c
+     1>glut_dstr.c(1216): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1219): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1230): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : 参见“strcpy”的声明
+     1>glut_dstr.c(1241): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+     1>glut_dstr.c(1249): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(204) : 参见“strtok”的声明
+         glut_dials.c
+         glut_cursor.c
+         glut_cmap.c
+         glut_cindex.c
+         glut_bwidth.c
+         glut_bitmap.c
+         glut_9x15.c
+         glut_8x13.c
+         正在生成代码...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _DEBUG /D _VC80_UPGRADE=0x0600 /l"0x0409" /nologo /fo"x64\Debug\glut.res" glut.rc 
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\x64\Debug\glut32.dll) does not match the Linker's OutputFile property value (F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\Debug\glut64.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1195,5): warning MSB8012: TargetName(glut32) does not match the Linker's OutputFile property value (glut64). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/glut64.dll" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib winmm.lib glu32.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:glut64.lib /DEF:".\glut.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/glut64.pdb" /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug/glut64.lib" /MACHINE:X64 /DLL x64\Debug\glut.res
+         .\Debug/glut_8x13.obj
+         .\Debug/glut_9x15.obj
+         .\Debug/glut_bitmap.obj
+         .\Debug/glut_bwidth.obj
+         .\Debug/glut_cindex.obj
+         .\Debug/glut_cmap.obj
+         .\Debug/glut_cursor.obj
+         .\Debug/glut_dials.obj
+         .\Debug/glut_dstr.obj
+         .\Debug/glut_event.obj
+         .\Debug/glut_ext.obj
+         .\Debug/glut_fcb.obj
+         .\Debug/glut_fullscrn.obj
+         .\Debug/glut_gamemode.obj
+         .\Debug/glut_get.obj
+         .\Debug/glut_glxext.obj
+         .\Debug/glut_hel10.obj
+         .\Debug/glut_hel12.obj
+         .\Debug/glut_hel18.obj
+         .\Debug/glut_init.obj
+         .\Debug/glut_input.obj
+         .\Debug/glut_joy.obj
+         .\Debug/glut_key.obj
+         .\Debug/glut_keyctrl.obj
+         .\Debug/glut_keyup.obj
+         .\Debug/glut_mesa.obj
+         .\Debug/glut_modifier.obj
+         .\Debug/glut_mroman.obj
+         .\Debug/glut_overlay.obj
+         .\Debug/glut_roman.obj
+         .\Debug/glut_shapes.obj
+         .\Debug/glut_space.obj
+         .\Debug/glut_stroke.obj
+         .\Debug/glut_swap.obj
+         .\Debug/glut_swidth.obj
+         .\Debug/glut_tablet.obj
+         .\Debug/glut_teapot.obj
+         .\Debug/glut_tr10.obj
+         .\Debug/glut_tr24.obj
+         .\Debug/glut_util.obj
+         .\Debug/glut_vidresize.obj
+         .\Debug/glut_warp.obj
+         .\Debug/glut_win.obj
+         .\Debug/glut_winmisc.obj
+         .\Debug/win32_glx.obj
+         .\Debug/win32_menu.obj
+         .\Debug/win32_util.obj
+         .\Debug/win32_winproc.obj
+         .\Debug/win32_x11.obj
+     1>.\glut.def(1): warning LNK4017: DESCRIPTION 语句不支持目标平台；已忽略
+     1>glut_bitmap.obj : warning LNK4197: 多次指定导出“glutBitmapCharacter”；使用第一个规范
+     1>glut_bwidth.obj : warning LNK4197: 多次指定导出“glutBitmapWidth”；使用第一个规范
+     1>glut_bwidth.obj : warning LNK4197: 多次指定导出“glutBitmapLength”；使用第一个规范
+     1>glut_cindex.obj : warning LNK4197: 多次指定导出“glutSetColor”；使用第一个规范
+     1>glut_cindex.obj : warning LNK4197: 多次指定导出“glutGetColor”；使用第一个规范
+     1>glut_cindex.obj : warning LNK4197: 多次指定导出“glutCopyColormap”；使用第一个规范
+     1>glut_cursor.obj : warning LNK4197: 多次指定导出“glutSetCursor”；使用第一个规范
+     1>glut_dials.obj : warning LNK4197: 多次指定导出“glutButtonBoxFunc”；使用第一个规范
+     1>glut_dials.obj : warning LNK4197: 多次指定导出“glutDialsFunc”；使用第一个规范
+     1>glut_dstr.obj : warning LNK4197: 多次指定导出“glutInitDisplayString”；使用第一个规范
+     1>glut_event.obj : warning LNK4197: 多次指定导出“glutMainLoop”；使用第一个规范
+     1>glut_event.obj : warning LNK4197: 多次指定导出“glutPostRedisplay”；使用第一个规范
+     1>glut_event.obj : warning LNK4197: 多次指定导出“glutPostWindowRedisplay”；使用第一个规范
+     1>glut_event.obj : warning LNK4197: 多次指定导出“glutIdleFunc”；使用第一个规范
+     1>glut_event.obj : warning LNK4197: 多次指定导出“glutTimerFunc”；使用第一个规范
+     1>glut_ext.obj : warning LNK4197: 多次指定导出“glutExtensionSupported”；使用第一个规范
+     1>glut_fullscrn.obj : warning LNK4197: 多次指定导出“glutFullScreen”；使用第一个规范
+     1>glut_gamemode.obj : warning LNK4197: 多次指定导出“glutGameModeString”；使用第一个规范
+     1>glut_gamemode.obj : warning LNK4197: 多次指定导出“glutEnterGameMode”；使用第一个规范
+     1>glut_gamemode.obj : warning LNK4197: 多次指定导出“glutLeaveGameMode”；使用第一个规范
+     1>glut_gamemode.obj : warning LNK4197: 多次指定导出“glutGameModeGet”；使用第一个规范
+     1>glut_get.obj : warning LNK4197: 多次指定导出“glutGet”；使用第一个规范
+     1>glut_init.obj : warning LNK4197: 多次指定导出“glutInit”；使用第一个规范
+     1>glut_init.obj : warning LNK4197: 多次指定导出“__glutInitWithExit”；使用第一个规范
+     1>glut_init.obj : warning LNK4197: 多次指定导出“glutInitDisplayMode”；使用第一个规范
+     1>glut_init.obj : warning LNK4197: 多次指定导出“glutInitWindowPosition”；使用第一个规范
+     1>glut_init.obj : warning LNK4197: 多次指定导出“glutInitWindowSize”；使用第一个规范
+     1>glut_input.obj : warning LNK4197: 多次指定导出“glutDeviceGet”；使用第一个规范
+     1>glut_joy.obj : warning LNK4197: 多次指定导出“glutJoystickFunc”；使用第一个规范
+     1>glut_joy.obj : warning LNK4197: 多次指定导出“glutForceJoystickFunc”；使用第一个规范
+     1>glut_key.obj : warning LNK4197: 多次指定导出“glutKeyboardFunc”；使用第一个规范
+     1>glut_key.obj : warning LNK4197: 多次指定导出“glutSpecialFunc”；使用第一个规范
+     1>glut_keyctrl.obj : warning LNK4197: 多次指定导出“glutIgnoreKeyRepeat”；使用第一个规范
+     1>glut_keyctrl.obj : warning LNK4197: 多次指定导出“glutSetKeyRepeat”；使用第一个规范
+     1>glut_keyup.obj : warning LNK4197: 多次指定导出“glutKeyboardUpFunc”；使用第一个规范
+     1>glut_keyup.obj : warning LNK4197: 多次指定导出“glutSpecialUpFunc”；使用第一个规范
+     1>glut_modifier.obj : warning LNK4197: 多次指定导出“glutGetModifiers”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutEstablishOverlay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutRemoveOverlay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutUseLayer”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutPostOverlayRedisplay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutPostWindowOverlayRedisplay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutShowOverlay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutHideOverlay”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutOverlayDisplayFunc”；使用第一个规范
+     1>glut_overlay.obj : warning LNK4197: 多次指定导出“glutLayerGet”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireSphere”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidSphere”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireCone”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidCone”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireCube”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidCube”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireTorus”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidTorus”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireDodecahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidDodecahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireOctahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidOctahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireTetrahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidTetrahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutWireIcosahedron”；使用第一个规范
+     1>glut_shapes.obj : warning LNK4197: 多次指定导出“glutSolidIcosahedron”；使用第一个规范
+     1>glut_space.obj : warning LNK4197: 多次指定导出“glutSpaceballMotionFunc”；使用第一个规范
+     1>glut_space.obj : warning LNK4197: 多次指定导出“glutSpaceballRotateFunc”；使用第一个规范
+     1>glut_space.obj : warning LNK4197: 多次指定导出“glutSpaceballButtonFunc”；使用第一个规范
+     1>glut_stroke.obj : warning LNK4197: 多次指定导出“glutStrokeCharacter”；使用第一个规范
+     1>glut_swap.obj : warning LNK4197: 多次指定导出“glutSwapBuffers”；使用第一个规范
+     1>glut_swidth.obj : warning LNK4197: 多次指定导出“glutStrokeWidth”；使用第一个规范
+     1>glut_swidth.obj : warning LNK4197: 多次指定导出“glutStrokeLength”；使用第一个规范
+     1>glut_tablet.obj : warning LNK4197: 多次指定导出“glutTabletMotionFunc”；使用第一个规范
+     1>glut_tablet.obj : warning LNK4197: 多次指定导出“glutTabletButtonFunc”；使用第一个规范
+     1>glut_teapot.obj : warning LNK4197: 多次指定导出“glutWireTeapot”；使用第一个规范
+     1>glut_teapot.obj : warning LNK4197: 多次指定导出“glutSolidTeapot”；使用第一个规范
+     1>glut_util.obj : warning LNK4197: 多次指定导出“glutReportErrors”；使用第一个规范
+     1>glut_vidresize.obj : warning LNK4197: 多次指定导出“glutVideoResizeGet”；使用第一个规范
+     1>glut_vidresize.obj : warning LNK4197: 多次指定导出“glutSetupVideoResizing”；使用第一个规范
+     1>glut_vidresize.obj : warning LNK4197: 多次指定导出“glutStopVideoResizing”；使用第一个规范
+     1>glut_vidresize.obj : warning LNK4197: 多次指定导出“glutVideoResize”；使用第一个规范
+     1>glut_vidresize.obj : warning LNK4197: 多次指定导出“glutVideoPan”；使用第一个规范
+     1>glut_warp.obj : warning LNK4197: 多次指定导出“glutWarpPointer”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutCreateWindow”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“__glutCreateWindowWithExit”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutCreateSubWindow”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutDestroyWindow”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutGetWindow”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutSetWindow”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutDisplayFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutReshapeFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutMouseFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutMotionFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutPassiveMotionFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutEntryFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutVisibilityFunc”；使用第一个规范
+     1>glut_win.obj : warning LNK4197: 多次指定导出“glutWindowStatusFunc”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutSetWindowTitle”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutSetIconTitle”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutPositionWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutReshapeWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutPopWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutPushWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutIconifyWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutShowWindow”；使用第一个规范
+     1>glut_winmisc.obj : warning LNK4197: 多次指定导出“glutHideWindow”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutCreateMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“__glutCreateMenuWithExit”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutDestroyMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutGetMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutSetMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutAddMenuEntry”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutAddSubMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutChangeToMenuEntry”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutChangeToSubMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutRemoveMenuItem”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutAttachMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutDetachMenu”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutMenuStateFunc”；使用第一个规范
+     1>win32_menu.obj : warning LNK4197: 多次指定导出“glutMenuStatusFunc”；使用第一个规范
+            正在创建库 .\Debug/glut64.lib 和对象 .\Debug/glut64.exp
+         glut32.vcxproj -> F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\x64\Debug\glut32.dll
+     1>已完成生成项目“F:\Opengl\Git_OpenGL\dependence\OpenglLib\glut\source\glut-3.7.6\lib\glut\glut32.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:15.35
