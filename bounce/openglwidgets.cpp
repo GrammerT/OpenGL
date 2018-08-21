@@ -12,7 +12,7 @@ OpenGLWidgets::OpenGLWidgets(QWidget *parent)
 
 {
     QTimer *timer = new QTimer(this);
-//    connect(timer,SIGNAL(timeout()),this,SLOT(onTimerout()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(onTimerout()));
     timer->start(25);
 }
 
@@ -45,14 +45,16 @@ void OpenGLWidgets::resizeGL(int w, int h)
     if(w<=h)
     {
         windowWidth = 100;
-        windowHeight = 100 / aspectRatio;
+        windowHeight = 100.0/ aspectRatio;
         glOrtho(-100.0,100.0,-windowHeight,windowHeight,1.0,-1.0);
+//        glOrtho(0.0,50.0,-25.0,windowHeight,1.0,-1.0);
     }
     else
     {
-        windowWidth = 100 * aspectRatio;
+        windowWidth =100 * aspectRatio;
         windowHeight = 100;
         glOrtho(-windowWidth,windowWidth,-100,100,1.0,-1.0);
+//        glOrtho(0.0,windowWidth,-25.0,25.0,1.0,-1.0);
     }
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -65,12 +67,12 @@ void OpenGLWidgets::keyPressEvent(QKeyEvent *event)
 
 void OpenGLWidgets::onTimerout()
 {
-    if(point_x>windowWidth-rectSize||point_x<-windowWidth)
+    if(point_x>windowWidth-rectSize+12||point_x<-windowWidth-12)
     {
-        point_x=-point_x;
+        xstep=-xstep;
     }
     // Reverse direction when you reach top or bottom edge
-        if(point_y > windowHeight || point_y < -windowHeight + rectSize)
+        if(point_y > windowHeight+12 || point_y < -windowHeight + rectSize-12)
             ystep = -ystep;
 
         // Actually move the square
@@ -81,14 +83,14 @@ void OpenGLWidgets::onTimerout()
         // smaller while the rectangle is bouncing and the
         // rectangle suddenly finds itself outside the new
         // clipping volume
-        if(point_x > (windowWidth-rectSize + xstep))
-           point_x = windowWidth-rectSize-1;
-        else if(point_x < -(windowWidth+ xstep))
-            point_x = -this->width() -1;
+//        if(point_x > (windowWidth-rectSize + xstep))
+//           point_x = windowWidth-rectSize-1;
+//        else if(point_x < -(windowWidth+ xstep))
+//            point_x = -windowWidth-1;
 
-        if(point_y > (windowHeight + ystep))
-            point_y = windowHeight-1;
-        else if(point_y < -(windowHeight - rectSize + ystep))
-            point_y = -windowHeight + rectSize - 1;
+//        if(point_y > (windowHeight + ystep))
+//            point_y = windowHeight-1;
+//        else if(point_y < -(windowHeight - rectSize + ystep))
+//            point_y = -windowHeight + rectSize - 1;
         update();
 }
