@@ -27,6 +27,8 @@ void OpenGLWidgets::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0,0.0,0.0);
     glRectf(point_x,point_y,point_x+rectSize,point_y-rectSize);
+    glColor3f(0.0,1.0,0.0);
+    glRectf(-5,5.0,5,-5);
 }
 
 void OpenGLWidgets::resizeGL(int w, int h)
