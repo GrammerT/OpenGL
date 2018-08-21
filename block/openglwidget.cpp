@@ -30,16 +30,19 @@ OpenglWidget::OpenglWidget(QWidget *parent)
     m_materialColor[1] = 0.0f;
     m_materialColor[2] = 0.0f;
 
+    m_ground[0][0] = 0.0f;
+    m_ground[0][1] = -25.0f;
+    m_ground[0][2] =0.0f;
 
-    m_ground.push_back(0.0f);
-    m_ground.push_back(-25.0f);
-    m_ground.push_back(0.0f);
-    m_ground.push_back(10.0f);
-    m_ground.push_back(-25.0f);
-    m_ground.push_back(0.0f);
-    m_ground.push_back(10.0f);
-    m_ground.push_back(-25.0f);
-    m_ground.push_back(-10.0f);
+    m_ground[1][0] = 10.0f;
+    m_ground[1][1] = -25.0f;
+    m_ground[1][2] = 0.0f ;
+
+    m_ground[2][0] = 10.0f;
+    m_ground[2][1] =  -25.0f;
+    m_ground[2][2] = -10.0f;
+
+//    setupRC();
 
     this->setFocusPolicy(Qt::StrongFocus);
 
@@ -227,6 +230,7 @@ void OpenglWidget::paintGL()
     // Draw a shadow with some lighting
     case 4:
     {
+        bigThan2();
         glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *) cubeXform);
         glutSolidCube(50.0f);
         glPopMatrix();
@@ -236,24 +240,23 @@ void OpenglWidget::paintGL()
 
         glPushMatrix();
 
-        MakeShadowMatrix(m_ground, lightpos, cubeXform);
+        MakeShadowMatrix(m_ground, m_lightPos, cubeXform);
 
         glMultMatrixf((GLfloat *)cubeXform);
 
-        glTranslatef(-10.0f, 0.0f, 10.0f);
+        glTranslatef(-10.0f, 0.0f,10.0f);
         // Set drawing color to Black
         glColor3f(0.0f, 0.0f, 0.0f);
         glutSolidCube(50.0f);
         break;
     }
-        /*
     case 5:
     {
         glColor3ub(255,255,255);
         glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *) cubeXform);
 
         // Front Face (before rotation)
-        glBindTexture(GL_TEXTURE_2D, textures[1]);
+        glBindTexture(GL_TEXTURE_2D, m_textures[1]);
         glBegin(GL_QUADS);
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(25.0f,25.0f,25.0f);
@@ -266,7 +269,7 @@ void OpenglWidget::paintGL()
         glEnd();
 
         // Top of cube
-        glBindTexture(GL_TEXTURE_2D, textures[2]);
+        glBindTexture(GL_TEXTURE_2D, m_textures[2]);
         glBegin(GL_QUADS);
         // Front Face
         glTexCoord2f(0.0f, 0.0f);
@@ -280,7 +283,7 @@ void OpenglWidget::paintGL()
         glEnd();
 
         // Last two segments for effect
-        glBindTexture(GL_TEXTURE_2D, textures[3]);
+        glBindTexture(GL_TEXTURE_2D, m_textures[3]);
         glBegin(GL_QUADS);
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(25.0f,25.0f,-25.0f);
@@ -301,7 +304,7 @@ void OpenglWidget::paintGL()
 
         glPushMatrix();
 
-        MakeShadowMatrix(ground, lightpos, cubeXform);
+        MakeShadowMatrix(m_ground, m_lightPos, cubeXform);
         glMultMatrixf((GLfloat *)cubeXform);
 
         glTranslatef(-10.0f, 0.0f, 10.0f);
@@ -311,7 +314,6 @@ void OpenglWidget::paintGL()
         glutSolidCube(50.0f);
         break;
     }
-    */
     }
     glPopMatrix();
     // Flush drawing commands
@@ -383,19 +385,176 @@ void OpenglWidget::drawPlate()
 
 void OpenglWidget::bigThan2()
 {
-//    glEnable(GL_DEPTH_TEST); //! 开启深度测试
-//    glDepthFunc(GL_LEQUAL); //! 指定深度缓冲比较值
+    glEnable(GL_DEPTH_TEST); //! 开启深度测试
+    glDepthFunc(GL_LEQUAL); //! 指定深度缓冲比较值
     glEnable(GL_COLOR_MATERIAL);
     //! 设置环境光强度
     glLightfv(GL_LIGHT0, GL_AMBIENT, m_lightAmbient);
     //! 设置散色光
-//    glLightfv(GL_LIGHT0, GL_DIFFUSE, m_lightDiffuse);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, m_lightDiffuse);
     //! 设置镜面光
-//    glLightfv(GL_LIGHT0, GL_SPECULAR, m_lightSpecular);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, m_lightSpecular);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     //! 设置材质
-//    glMaterialfv(GL_FRONT, GL_SPECULAR,m_lightSpecular);
-//    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, m_materialColor);
-//    glMateriali(GL_FRONT, GL_SHININESS,128);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,m_lightSpecular);
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, m_materialColor);
+    glMateriali(GL_FRONT, GL_SHININESS,128);
 }
+
+void OpenglWidget::MakeShadowMatrix(GLfloat points[3][3], GLfloat lightPos[4], GLfloat destMat[4][4])
+{
+    GLfloat planeCoeff[4];
+    GLfloat dot;
+
+    // Find the plane equation coefficients
+    // Find the first three coefficients the same way we
+    // find a normal.
+    calcNormal(points,planeCoeff);
+    //! 平面S 的方程
+    //! S = Ax+By+Cz+D 其中(A,B,C)是法向量.D=-(Ax+By+Cz);
+    // Find the last coefficient by back substitutions
+    planeCoeff[3] = - (
+        (planeCoeff[0]*points[2][0]) + (planeCoeff[1]*points[2][1]) +
+        (planeCoeff[2]*points[2][2]));
+
+
+    //! 向量点积: a.b=|a||b|cos(@);
+    // Dot product of plane and light position
+    dot = planeCoeff[0] * lightPos[0] +
+            planeCoeff[1] * lightPos[1] +
+            planeCoeff[2] * lightPos[2] +
+            planeCoeff[3] * lightPos[3];
+
+    //! 做投影
+    // Now do the projection
+    // First column
+    destMat[0][0] = dot - lightPos[0] * planeCoeff[0];
+    destMat[1][0] = 0.0f - lightPos[0] * planeCoeff[1];
+    destMat[2][0] = 0.0f - lightPos[0] * planeCoeff[2];
+    destMat[3][0] = 0.0f - lightPos[0] * planeCoeff[3];
+
+    // Second column
+    destMat[0][1] = 0.0f - lightPos[1] * planeCoeff[0];
+    destMat[1][1] = dot - lightPos[1] * planeCoeff[1];
+    destMat[2][1] = 0.0f - lightPos[1] * planeCoeff[2];
+    destMat[3][1] = 0.0f - lightPos[1] * planeCoeff[3];
+
+    // Third Column
+    destMat[0][2] = 0.0f - lightPos[2] * planeCoeff[0];
+    destMat[1][2] = 0.0f - lightPos[2] * planeCoeff[1];
+    destMat[2][2] = dot - lightPos[2] * planeCoeff[2];
+    destMat[3][2] = 0.0f - lightPos[2] * planeCoeff[3];
+
+    // Fourth Column
+    destMat[0][3] = 0.0f - lightPos[3] * planeCoeff[0];
+    destMat[1][3] = 0.0f - lightPos[3] * planeCoeff[1];
+    destMat[2][3] = 0.0f - lightPos[3] * planeCoeff[2];
+    destMat[3][3] = dot - lightPos[3] * planeCoeff[3];
+}
+
+void OpenglWidget::calcNormal(float v[3][3], float out[3])
+{
+    float v1[3],v2[3];
+    static const int x = 0;
+    static const int y = 1;
+    static const int z = 2;
+
+    // Calculate two vectors from the three points
+    v1[x] = v[0][x] - v[1][x];
+    v1[y] = v[0][y] - v[1][y];
+    v1[z] = v[0][z] - v[1][z];
+
+    v2[x] = v[1][x] - v[2][x];
+    v2[y] = v[1][y] - v[2][y];
+    v2[z] = v[1][z] - v[2][z];
+
+    // Take the cross product of the two vectors to get
+    // the normal vector which will be stored in out
+    out[x] = v1[y]*v2[z] - v1[z]*v2[y];
+    out[y] = v1[z]*v2[x] - v1[x]*v2[z];
+    out[z] = v1[x]*v2[y] - v1[y]*v2[x];
+
+    // Normalize the vector (shorten length to one)
+    ReduceToUnit(out);
+}
+
+// Reduces a normal vector specified as a set of three coordinates,
+// to a unit normal vector of length one.
+//! 归一化
+void OpenglWidget::ReduceToUnit(float vector[])
+{
+    float length;
+
+    // Calculate the length of the vector
+    length = (float)sqrt((vector[0]*vector[0]) +
+                        (vector[1]*vector[1]) +
+                        (vector[2]*vector[2]));
+
+    // Keep the program from blowing up by providing an exceptable
+    // value for vectors that may calculated too close to zero.
+    if(length == 0.0f)
+        length = 1.0f;
+
+    // Dividing each element by the length will result in a
+    // unit normal vector.
+    vector[0] /= length;
+    vector[1] /= length;
+    vector[2] /= length;
+}
+
+/*
+void OpenglWidget::setupRC()
+{
+    GLbyte *pBytes;
+    GLint nWidth, nHeight, nComponents;
+    GLenum format;
+
+    // Black background
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f );
+
+    glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glGenTextures(4, textures);
+
+    // Load the texture objects
+    pBytes = gltLoadTGA("floor.tga", &nWidth, &nHeight, &nComponents, &format);
+    glBindTexture(GL_TEXTURE_2D, textures[0]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexImage2D(GL_TEXTURE_2D,0,nComponents,nWidth, nHeight, 0,
+                 format, GL_UNSIGNED_BYTE, pBytes);
+    free(pBytes);
+
+    pBytes = gltLoadTGA("Block4.tga", &nWidth, &nHeight, &nComponents, &format);
+    glBindTexture(GL_TEXTURE_2D, textures[1]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexImage2D(GL_TEXTURE_2D,0,nComponents,nWidth, nHeight, 0,
+                 format, GL_UNSIGNED_BYTE, pBytes);
+    free(pBytes);
+
+    pBytes = gltLoadTGA("block5.tga", &nWidth, &nHeight, &nComponents, &format);
+    glBindTexture(GL_TEXTURE_2D, textures[2]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexImage2D(GL_TEXTURE_2D,0,nComponents,nWidth, nHeight, 0,
+                 format, GL_UNSIGNED_BYTE, pBytes);
+    free(pBytes);
+
+    pBytes = gltLoadTGA("block6.tga", &nWidth, &nHeight, &nComponents, &format);
+    glBindTexture(GL_TEXTURE_2D, textures[3]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexImage2D(GL_TEXTURE_2D,0,nComponents,nWidth, nHeight, 0,
+                 format, GL_UNSIGNED_BYTE, pBytes);
+    free(pBytes);
+}
+*/

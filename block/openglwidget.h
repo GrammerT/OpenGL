@@ -25,13 +25,17 @@ public:
 private:
     void drawPlate();
     void bigThan2();
+    void MakeShadowMatrix(GLfloat points[3][3], GLfloat lightpos[4], GLfloat destMat[4][4]);
+    void calcNormal(float v[3][3],float out[3]);
+    void ReduceToUnit(float vector[3]);
+//    void setupRC();
 private:
     GLfloat m_lightPos[4];
     GLfloat m_lightAmbient[4] ;
     GLfloat m_lightDiffuse[3];
     GLfloat m_lightSpecular[3];
     GLfloat m_materialColor[3];
-    QVector<GLfloat> m_ground;
+    GLfloat m_ground[3][3];
     GLfloat m_textures[4];
     int m_Step;
     QVector<QVector3D> m_points;
