@@ -1,4 +1,6 @@
 
+QT += opengl
+
 INCLUDEPATH += "$$PWD/OpenglLib/glut/include"
 
 

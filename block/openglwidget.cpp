@@ -342,12 +342,11 @@ void OpenglWidget::resizeGL(int w, int h)
         windowWidth = 100.0f*(GLfloat)w/(GLfloat)h;
         windowHeight = 100.0f;
     }
-
     // Set the viewport to be the entire window
     glViewport(0, 0, w, h);
+    // Set the clipping volume
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    // Set the clipping volume
     glOrtho(-100.0f, windowWidth, -100.0f, windowHeight, -90.0f, 90.0f);
 
     glMatrixMode(GL_MODELVIEW);
