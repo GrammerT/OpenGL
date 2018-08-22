@@ -25,8 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 include("../dependence/dependence.pri");
 
 SOURCES += main.cpp\
-        widget.cpp
+        widget.cpp \
+    openglui.cpp
 
-HEADERS  += widget.h
+HEADERS  += widget.h \
+    openglui.h
 
 FORMS    += widget.ui
