@@ -26,6 +26,10 @@ private:
     QAction *action1;
     QAction *action2;
     QAction *action3;
+
+    bool depthTest; //! 是否深度测试
+    bool cullFace;     //!
+    bool Counterclockwise;  //! 规定面的顺时针和逆时针
 };
 
 #endif // OPENGLUI_H
