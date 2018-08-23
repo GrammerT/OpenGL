@@ -54,7 +54,7 @@ void OpenglUI::paintGL()
     }
     else
     {
-        glPolygonMode(GL_BACK,GL_LINE);
+        glPolygonMode(GL_FRONT,GL_LINE);
     }
     if(depthTest)
     {
@@ -67,14 +67,11 @@ void OpenglUI::paintGL()
     if(cullFace)
     {
         glEnable(GL_CULL_FACE);
-//        glCullFace(GL_BACK);
     }
     else
     {
         glDisable(GL_CULL_FACE);
     }
-
-
     glPushMatrix();
     glRotatef(xRot,1.0,0.0,0.0);
     glRotatef(yRot,0.0,1.0,0.0);
@@ -87,7 +84,7 @@ void OpenglUI::paintGL()
     int iPivot = 1;
     GLfloat begin_x = 0.0f;
     GLfloat begin_y = 20.0f;
-    for(GLfloat angle = 0.0;angle<2.0f*M_PI;angle+=(M_PI/8.0f))
+    for(GLfloat angle =2.0f*M_PI;angle>=0.0f;angle-=(M_PI/8.0f))
     {
         GLfloat x = 20.0f*qSin(angle);
         GLfloat y = 20.0f*qCos(angle);
