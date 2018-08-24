@@ -1,5 +1,6 @@
 #include "openglui.h"
 #include <QKeyEvent>
+#include <QtMath>
 
 OpenglUI::OpenglUI(QWidget *parent)
     :QOpenGLWidget(parent)
@@ -13,6 +14,7 @@ void OpenglUI::initializeGL()
 {
     initializeOpenGLFunctions();
     glClearColor(0.0f,0.0f,0.0f,1.0f);
+
 }
 
 void OpenglUI::paintGL()
@@ -29,20 +31,34 @@ void OpenglUI::paintGL()
     GLfloat fCurrSize;			// Save current size
     glGetFloatv(GL_LINE_WIDTH_RANGE,fSizes);
     fCurrSize = fSizes[0];
-
-    // Step up Y axis 20 units at a time
+    glDisable(GL_LINE_STIPPLE);
+//    // Step up Y axis 20 units at a time
     for(GLfloat y = -90.0f; y < 90.0f; y += 20.0f)
     {
         // Set the line width
         glLineWidth(fCurrSize);
         // Draw the line
         glBegin(GL_LINES);
-        glVertex2f(-80.0f, y);
-        glVertex2f(80.0f, y);
+            glVertex2f(-80.0f, y);
+            glVertex2f(80.0f, y);
         glEnd();
         // Increase the line width
         fCurrSize += 1.0f;
     }
+    glEnable(GL_LINE_STIPPLE);
+    GLint factor = 3;			// Stippling factor
+    GLushort pattern = 0x5555;	// Stipple pattern
+    for(GLfloat y=-80.0f;y<80.0f;y+=20.0f)
+    {
+        glLineStipple(factor,pattern);
+
+        glBegin(GL_LINES);
+            glVertex2f(-80.0f, y);
+            glVertex2f(80.0f, y);
+        glEnd();
+        factor++;
+    }
+
 
     glPopMatrix();
 }
@@ -65,6 +81,7 @@ void OpenglUI::resizeGL(int w, int h)
     {
         glOrtho(-glwidth,glwidth,-glwidth/as,glwidth/as,-100,100);
     }
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
