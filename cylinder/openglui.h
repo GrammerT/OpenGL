@@ -19,7 +19,8 @@ public:
     virtual void resizeGL(int w, int h);
     virtual void keyPressEvent(QKeyEvent *event)override;
     virtual void mousePressEvent(QMouseEvent *e)override;
-    virtual void mouseReleaseEvent(QMouseEvent *e)override;
+    virtual void mouseMoveEvent(QMouseEvent *event);
+//    virtual void mouseReleaseEvent(QMouseEvent *e)override;
 public slots:
     void onTimerout();
 private:
