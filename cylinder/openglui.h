@@ -23,11 +23,12 @@ public:
 public slots:
     void onTimerout();
 private:
-    void drawSphere(GLfloat xx, GLfloat yy, GLfloat zz, GLfloat radius, GLfloat M, GLfloat N);
+//    void drawSphere(GLfloat xx, GLfloat yy, GLfloat zz, GLfloat radius, GLfloat M, GLfloat N);
     void initShader();
 private:
     QOpenGLShaderProgram program;
     QMatrix4x4 projection;
+    QMatrix4x4 view;
     QQuaternion rotation;
     QVector2D mousePressPosition;
     QVector3D rotationAxis;

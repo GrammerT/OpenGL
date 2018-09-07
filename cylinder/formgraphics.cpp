@@ -171,7 +171,8 @@ void FormGraphics::formCircle(UnizModelData *data, QVector3D center, float radiu
     data->setHalfEdgeList(hedgeList);
 }
 
-void FormGraphics::formRoundTable(UnizModelData *data, QVector3D upCenter, float upRadius, QVector3D downCenter, float downRadius)
+void FormGraphics::formRoundTable(UnizModelData *data, QVector3D upCenter, float upRadius,
+                                                                                            QVector3D downCenter, float downRadius)
 {
 
 }
