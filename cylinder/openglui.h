@@ -20,6 +20,7 @@ public:
     virtual void keyPressEvent(QKeyEvent *event)override;
     virtual void mousePressEvent(QMouseEvent *e)override;
     virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
 //    virtual void mouseReleaseEvent(QMouseEvent *e)override;
 public slots:
     void onTimerout();
@@ -34,6 +35,9 @@ private:
     QVector2D mousePressPosition;
     QVector3D rotationAxis;
     qreal angularSpeed;
+
+    GLfloat zTrans;
+
     UnizModelData *m_data;
     GLfloat xRot;
     GLfloat yRot;

@@ -9,9 +9,10 @@
 OpenglUI::OpenglUI(QWidget *parent)
     :QOpenGLWidget(parent)
     ,angularSpeed(0)
+    ,zTrans(0.0)
 {
     m_data = new UnizModelData;
-    FormGraphics::formCircle(m_data,QVector3D(0,0,0),40);
+    FormGraphics::formCircle(m_data,QVector3D(0,0,0),40.0);
     this->setFocusPolicy(Qt::StrongFocus);
     QTimer *timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimerout()));
@@ -47,12 +48,11 @@ void OpenglUI::initializeGL()
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_FLAT);
     view.setToIdentity();
-    view.lookAt(QVector3D(0.0f, 0.0f, -30.0f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
+    view.lookAt(QVector3D(0.0f, 0.0f, 80.0f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
 //    program.setUniformValue("Kd", QVector3D(0.9f, 0.5f, 0.3f));
     program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));
-
     program.setUniformValue("Ld", QVector3D(1.0f, 1.0f, 1.0f));
-    program.setUniformValue("LightPosition", view * QVector4D(25.0f,0.0f,0.0f,1.0f));
+    program.setUniformValue("LightPosition",  QVector4D(0.0f,0.0f,80.0f,1.0f));
 }
 
 void OpenglUI::paintGL()
@@ -60,10 +60,9 @@ void OpenglUI::paintGL()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
     QMatrix4x4 matrix;
-    static int i=20;
-    matrix.translate(0.0, 0.0, i--);
-//    matrix.rotate(rotation);
-
+    matrix.translate(0.0, 0.0, zTrans);
+//    matrix.translate(0.0, 0.0, 0.0);
+    matrix.rotate(rotation);
     program.setUniformValue("m_matrix", matrix);
     program.setUniformValue("v_matrix", view);
     program.setUniformValue("p_matrix", projection);
@@ -82,14 +81,12 @@ void OpenglUI::resizeGL(int w, int h)
     qreal aspect = qreal(w) / qreal(h ? h : 1);
 
     // Set near plane to 3.0, far plane to 7.0, field of view 45 degrees
-    const qreal zNear = 3.0, zFar = 10000.0, fov = 45.0;
+    const qreal zNear = 0.1, zFar = 1000.0, fov = 45.0;
 
     // Reset projection
     projection.setToIdentity();
     // Set perspective projection
     projection.perspective(fov, aspect, zNear, zFar);
-
-    view.setToIdentity();
 }
 
 void OpenglUI::keyPressEvent(QKeyEvent *event)
@@ -146,6 +143,21 @@ void OpenglUI::mouseMoveEvent(QMouseEvent *event)
         this->update();
     }
     event->accept();
+}
+
+void OpenglUI::wheelEvent(QWheelEvent *event)
+{
+    QPoint p = event->angleDelta()/8.0;
+    if(p.y()<0)
+    {
+        zTrans -= 0.25f;
+    }
+    else
+    {
+        zTrans += 0.25f;
+    }
+    this->update();
+
 }
 
 void OpenglUI::initShader()
