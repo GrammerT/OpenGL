@@ -5,7 +5,8 @@ precision mediump int;
 precision mediump float;
 #endif
 
-in vec3 LightIntensity;
+//smooth in vec3 LightIntensity;
+flat in vec3 LightIntensity;
 
 out vec4 FragColor;
 //! [0]
