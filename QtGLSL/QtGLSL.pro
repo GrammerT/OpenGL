@@ -30,7 +30,6 @@ SOURCES += main.cpp\
 
 HEADERS  += glslwidget.h \
     openglwidget.h \
-    vbotorus.h \
     vbotorus.h
 
 FORMS    += glslwidget.ui

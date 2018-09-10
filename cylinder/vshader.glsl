@@ -19,7 +19,9 @@ uniform mat4 v_matrix;
 uniform mat3 n_matrix;//! 传入应该归一化
 
 
-out vec3 LightIntensity;
+//smooth out vec3 LightIntensity;
+flat out vec3 LightIntensity;
+
 
 //! [0]
 void main()
@@ -31,8 +33,5 @@ void main()
     LightIntensity = Ld*Kd*max(dot(direction,tNormal),0.0);
 
     gl_Position = p_matrix *v_matrix* m_matrix * vec4(VertexPosition,1.0);
-    // Pass texture coordinate to fragment shader
 }
 //! [0]
-
-

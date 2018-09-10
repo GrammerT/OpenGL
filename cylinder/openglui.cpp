@@ -9,7 +9,7 @@
 OpenglUI::OpenglUI(QWidget *parent)
     :QOpenGLWidget(parent)
     ,angularSpeed(0)
-    ,zTrans(0.0)
+    ,zTrans(-100.0)
 {
     m_data = new UnizModelData;
     FormGraphics::formCircle(m_data,QVector3D(0,0,0),40.0);
@@ -48,11 +48,27 @@ void OpenglUI::initializeGL()
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_FLAT);
     view.setToIdentity();
-    view.lookAt(QVector3D(0.0f, 0.0f, 80.0f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
-//    program.setUniformValue("Kd", QVector3D(0.9f, 0.5f, 0.3f));
-    program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));
-    program.setUniformValue("Ld", QVector3D(1.0f, 1.0f, 1.0f));
-    program.setUniformValue("LightPosition",  QVector4D(0.0f,0.0f,80.0f,1.0f));
+    view.lookAt(QVector3D(0.0f, 0.0f, 20.0f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
+//    program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));//!  model's color.
+//    program.setUniformValue("Ld", QVector3D(1.0f, 1.0f, 1.0f)); //! model reflect level of light.
+//    program.setUniformValue("LightPosition",  QVector4D(0.0f,0.0f,80.0f,1.0f));
+    QVector4D worldLight = QVector4D(0.0f,0.0f,2.0f,1.0f);
+    program.setUniformValue("Light.Position", view * worldLight );
+
+    /**
+        1.材料反射率都为0，则物体显示黑色
+        2.漫反射有值，其余为0，则漫反射可以控制物体颜色
+        3.只有镜面反射，其他为0，则对应的面会显示颜色
+        4.
+    */
+    program.setUniformValue("Material.RateAmbient", 1.0f, 1.0f, 1.0f);
+    program.setUniformValue("Material.RateDiffuse", 1.0f, 1.0f, 0.0f);
+    program.setUniformValue("Material.RateSpecular", 0.0f, 1.0f, 0.0f);
+
+    program.setUniformValue("Light.LightAmbient", 0.0f, 0.0f, 0.0f);
+    program.setUniformValue("Light.LightDiffuse", 1.0f, 1.0f, 1.0f);
+    program.setUniformValue("Light.LightSpecular", 1.0f, 1.0f, 1.0f);
+    program.setUniformValue("Material.Shininess", 100.0f);
 }
 
 void OpenglUI::paintGL()
@@ -61,12 +77,12 @@ void OpenglUI::paintGL()
 
     QMatrix4x4 matrix;
     matrix.translate(0.0, 0.0, zTrans);
-//    matrix.translate(0.0, 0.0, 0.0);
     matrix.rotate(rotation);
-    program.setUniformValue("m_matrix", matrix);
-    program.setUniformValue("v_matrix", view);
-    program.setUniformValue("p_matrix", projection);
-    program.setUniformValue("n_matrix", (view*matrix).normalMatrix());
+    QMatrix4x4 MVP = projection*view*matrix;
+    program.setUniformValue("ModelViewMatrix", view*matrix);
+    program.setUniformValue("MVP", MVP);
+    program.setUniformValue("ProjectionMatrix", projection);
+    program.setUniformValue("NormalMatrix", (view*matrix).normalMatrix());
 
     if(m_data)
     {
@@ -162,11 +178,25 @@ void OpenglUI::wheelEvent(QWheelEvent *event)
 
 void OpenglUI::initShader()
 {
+
+//    // vertex shader
+//    QOpenGLShader *vshader = new QOpenGLShader(QOpenGLShader::Vertex, this);
+//    vshader->compileSourceFile(":/function.vert");
+//    // fragment shader
+//    QOpenGLShader *fshader = new QOpenGLShader(QOpenGLShader::Fragment, this);
+//    fshader->compileSourceFile(":/function.frag");
     // Compile vertex shader
-    if (!program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/vshader.glsl"))
+//    if (!program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/vshader.glsl"))
+//        close();
+//    // Compile fragment shader
+//    if (!program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/fshader.glsl"))
+//        close();
+
+    // Compile vertex shader
+    if (!program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/function.vert"))
         close();
     // Compile fragment shader
-    if (!program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/fshader.glsl"))
+    if (!program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/function.frag"))
         close();
     // Link shader pipeline
     if (!program.link())
