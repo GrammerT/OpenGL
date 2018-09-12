@@ -174,5 +174,52 @@ void FormGraphics::formCircle(UnizModelData *data, QVector3D center, float radiu
 void FormGraphics::formRoundTable(UnizModelData *data, QVector3D upCenter, float upRadius,
                                                                                             QVector3D downCenter, float downRadius)
 {
+    std::array<QVector3D, 3> triangle;
+    typedef QVector<QVector3D> Vec3Array;
+    typedef QVector<unsigned int> IndexArray;
 
+    QSharedPointer<Vec3Array> spVertices(new Vec3Array);
+    QSharedPointer<IndexArray> spIndices(new IndexArray);
+    Vec3Array *pVertices = spVertices.data();
+    IndexArray *pIndices = spIndices.data();
+
+    int M = 1;
+    int N = 20;
+
+    float xx = upCenter.x();
+    float yy = upCenter.y();
+    float zz = upCenter.z();
+
+    float step_z = M_PI/M;
+    float step_xy = 2*M_PI/N;
+
+    float x[4],y[4],z[4];
+    float angle_z = step_z*0.5;
+    float angle_xy = 0.0;
+    int i=0, j=0;
+    x[0] = upRadius * sin(0) * cos(0);
+    y[0] = upRadius * sin(0) * sin(0);
+    z[0] = upRadius * cos(0);
+
+//    QVector3D DOWN = QVector3D(x[0],y[0],z[0]);
+//    typedef QVector<QVector<QVector3D>>  RingPoints;
+//    RingPoints points;
+//    //! rotate by Y
+//    //! angle_z: 与z轴正向夹角
+//    //! angle_xy:与x轴正向夹角
+//    for(i=1; i<M; i++)
+//    {
+//        QVector<QVector3D> oneRingPoints;
+//        QVector3D point;
+//        angle_z = i * step_z;
+//        for(j=0; j<N; j++)
+//        {
+//            angle_xy = j * step_xy;
+//            point.setX(radius * sin(angle_z) * cos(angle_xy));
+//            point.setY(radius * sin(angle_z) * sin(angle_xy));
+//            point.setZ(radius *cos(angle_z));
+//            oneRingPoints.push_back(point);
+//        }
+//        points.push_back(oneRingPoints);
+//    }
 }
