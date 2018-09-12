@@ -85,15 +85,25 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *event)
 
 void OpenGLWidget::mouseMoveEvent(QMouseEvent *event)
 {
+    QVector2D newPos = (QVector2D)event->pos();
+    QVector2D diff = newPos - mousePos;
     if(event->buttons() == Qt::LeftButton)
     {
-        QVector2D newPos = (QVector2D)event->pos();
-        QVector2D diff = newPos - mousePos;
         qreal angle = (diff.length())/3.6;
         // Rotation axis is perpendicular to the mouse position difference
         // vector
         QVector3D rotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
         rotation = QQuaternion::fromAxisAndAngle(rotationAxis, angle) * rotation;
+        mousePos = newPos;
+        this->update();
+    }
+    else
+    {
+        QVector2D newPos = (QVector2D)event->pos();
+        QVector2D diff = newPos - mousePos;
+
+        xtrans +=diff.x();
+        ytrans +=diff.y();
         mousePos = newPos;
         this->update();
     }
