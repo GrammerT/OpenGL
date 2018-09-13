@@ -99,12 +99,8 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent *event)
     }
     else
     {
-        QVector2D newPos = (QVector2D)event->pos();
-        QVector2D diff = newPos - mousePos;
-
-        xtrans +=diff.x();
-        ytrans +=diff.y();
         mousePos = newPos;
+
         this->update();
     }
     event->accept();
