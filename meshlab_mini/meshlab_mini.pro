@@ -11,6 +11,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = meshlab_mini
 TEMPLATE = app
 
+INCLUDEPATH += "$$PWD/../vcglib"\
+                                 "$$PWD/../vcglib/eigenlib"
+
+include("../dependence/dependence.pri")
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -27,12 +32,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     layerdialog.cpp \
-    multiviewer_container.cpp
+    multiviewer_container.cpp \
+    glarea.cpp \
+    ml_mesh_type.cpp \
+    meshmodel.cpp
 
 HEADERS += \
         mainwindow.h \
     layerdialog.h \
-    multiviewer_container.h
+    multiviewer_container.h \
+    glarea.h \
+    ml_mesh_type.h \
+    meshmodel.h
 
 FORMS += \
         mainwindow.ui \

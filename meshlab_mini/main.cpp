@@ -15,5 +15,11 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.showMaximized();
 
+    FileOpenEater *filterObj=new FileOpenEater(&w);
+    a.installEventFilter(filterObj);
+    a.processEvents();
+
     return a.exec();
 }
+
+

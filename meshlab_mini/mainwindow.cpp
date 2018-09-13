@@ -3,7 +3,10 @@
 #include <QMdiArea>
 #include <QIcon>
 #include <QProgressBar>
+#include <QFileDialog>
 #include "layerdialog.h"
+#include <QDebug>
+#include "glarea.h"
 
 QProgressBar *MainWindow::qb;
 
@@ -40,13 +43,10 @@ void MainWindow::switchCurrentContainer(QMdiSubWindow *subwin)
 
 }
 
-void MainWindow::importMeshWithLayerManagement()
+bool MainWindow::importMeshWithLayerManagement(QString filename)
 {
-    bool layervisible = false;
-    if(layerDialog!=NULL)
-    {
-
-    }
+    importMesh(filename,false);
+    return true;
 }
 
 void MainWindow::createMenu()
@@ -60,6 +60,40 @@ void MainWindow::createAction()
     importMeshAct = new QAction(QIcon(":/images/import_mesh.png"), tr("&Import Mesh..."), this);
     importMeshAct->setShortcutContext(Qt::ApplicationShortcut);
     importMeshAct->setShortcut(Qt::CTRL + Qt::Key_I);
-    connect(importMeshAct, SIGNAL(triggered()), this, SLOT(importMeshWithLayerManagement()));
+    qDebug()<< connect(importMeshAct, SIGNAL(triggered()), this, SLOT(importMeshWithLayerManagement()));
 
+}
+
+void MainWindow::newProject(const QString &projName)
+{
+    MultiViewer_Container *mvcont = new MultiViewer_Container(mdiarea);
+    connect(&mvcont->meshDoc,SIGNAL(meshAdded(int)),this,SLOT(meshAdded(int)));
+    mdiarea->addSubWindow(mvcont);
+
+    GLArea *gla = new GLArea(this,mvcont);
+    mvcont->addView(gla,Qt::Horizontal);
+}
+
+bool MainWindow::importMesh(QString fileName, bool isareload)
+{
+    if(!GLA())
+    {
+        this->newProject();
+        if(!GLA())
+            return false;
+    }
+//    QStringList fileNameList;
+//    if (fileName.isEmpty())
+//        fileNameList = QFileDialog::getOpenFileNames(this,tr("Import Mesh"), lastUsedDirectory.path(), PM.inpFilters.join(";;"));
+//    else
+//        fileNameList.push_back(fileName);
+
+//    if (fileNameList.isEmpty())	return false;
+//    else
+//    {
+//        //save path away so we can use it again
+//        QString path = fileNameList.first();
+//        path.truncate(path.lastIndexOf("/"));
+//        lastUsedDirectory.setPath(path);
+//    }
 }
