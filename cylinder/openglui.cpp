@@ -48,8 +48,9 @@ void OpenglUI::initializeGL()
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_FLAT);
     view.setToIdentity();
-    view.lookAt(QVector3D(0.0f, 0.0f, 20.0f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
-//    program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));//!  model's color.
+    view.lookAt(QVector3D(0.0f, 0.0f, 20.0f), QVector3D(0.0f,0.0f,1.0f), QVector3D(0.0f,1.0f,0.0f));
+    qDebug()<<view;
+    //    program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));//!  model's color.
 //    program.setUniformValue("Ld", QVector3D(1.0f, 1.0f, 1.0f)); //! model reflect level of light.
 //    program.setUniformValue("LightPosition",  QVector4D(0.0f,0.0f,80.0f,1.0f));
     QVector4D worldLight = QVector4D(0.0f,0.0f,2.0f,1.0f);
