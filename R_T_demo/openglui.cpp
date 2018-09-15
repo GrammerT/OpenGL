@@ -29,11 +29,12 @@ void OpenglUI::paintGL()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
     drawAxis(15.0);
-
     glPushMatrix();
-    glRotatef(zRotate,0.0,0.0,1.0);
-//    glTranslatef(-1.0,-1.0,0.0);
+    glTranslatef(-1.0,0.0,0.0);         //! 最后移动至目的地
+    glRotatef(zRotate,0.0,0.0,1.0); //! 再旋转
+    glTranslatef(-0.5,-0.5,0.0);    //! 先移动至原点
 
+    drawAxis(3.0);
     glBegin(GL_QUADS);
     glColor3f(1.0,0.0,0.0);
     glVertex3f(0.0,0.0,-5.0);
@@ -52,10 +53,11 @@ void OpenglUI::resizeGL(int w, int h)
     qreal aspect = qreal(w) / qreal(h ? h : 1);
     // Set near plane to 3.0, far plane to 7.0, field of view 45 degrees
     const qreal zNear = 0.1, zFar = 1000.0, fov = 45.0;
-    glShadeModel(GL_PROJECTION);
+   glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0,aspect,zNear,zFar);
-    glShadeModel(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 void OpenglUI::keyPressEvent(QKeyEvent *event)
@@ -71,7 +73,7 @@ void OpenglUI::mousePressEvent(QMouseEvent *e)
 void OpenglUI::mouseMoveEvent(QMouseEvent *event)
 {
     zRotate++;
-    if(zRotate>365)
+    if(zRotate>360)
     {
         zRotate = 0;
     }
