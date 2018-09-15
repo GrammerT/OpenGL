@@ -28,8 +28,18 @@ public:
 private:
     void drawAxis(float length);
 
+    void drawRectRotateRectOrigin();
+
+    void drawStairs();
+    void drawOneLevel();
+    void drawHandRail();
+
+
 private:
     GLfloat zRotate;
+
+    GLuint vertextVBO;
+    GLuint vertextIBO;
 };
 
 #endif // OPENGLUI_H
