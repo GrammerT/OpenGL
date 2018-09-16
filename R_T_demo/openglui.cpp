@@ -120,14 +120,14 @@ void OpenglUI::initializeGL()
 void OpenglUI::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-    glTranslatef(0.0,0.0,-5.0);
+    glPushMatrix();
     glRotatef(zRotate,0.0,1.0,0.0);
     glDisable(GL_LIGHTING);
     drawAxis(15);
     glEnable(GL_LIGHTING);
 //    drawStairs();
     drawSolarSystem();
+    glPopMatrix();
 }
 
 void OpenglUI::resizeGL(int w, int h)
@@ -141,9 +141,9 @@ void OpenglUI::resizeGL(int w, int h)
    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(fov,aspect,zNear,zFar);
-    gluLookAt(0.0,0.0,270.0,0.0,0.0,0.0,0.0,1.0,0.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    gluLookAt(0.0,0.0,270.0,0.0,0.0,0.0,0.0,1.0,0.0);
 
 }
 
@@ -293,7 +293,11 @@ void OpenglUI::drawSolarSystem()
     glDisable(GL_LIGHTING);
     drawAxis(70);
     glEnable(GL_LIGHTING);
+    glPushMatrix();
+    glTranslatef(0.0,0.0,45.0);
+    glRotatef(zRotate,0.0,0.0,1.0);
     glutSolidSphere(30,10,10);
+    glPopMatrix();
     glPushMatrix();
             glRotatef(zRotate,0.0,1.0,0.0);
             glTranslatef(0.0,0.0,-75.0);
@@ -301,11 +305,12 @@ void OpenglUI::drawSolarSystem()
             drawEarth();
         glPushMatrix();
             glRotatef(zRotate,0.0,1.0,0.0);
-            glTranslatef(0.0,0.0,-25.0);
+            glTranslatef(0.0,0.0,-35.0);
             glRotatef(zRotate+5,0.0,1.0,0.0);
             drawMoon();
         glPopMatrix();
     glPopMatrix();
+
 }
 
 void OpenglUI::drawEarth()
