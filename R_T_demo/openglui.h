@@ -35,6 +35,10 @@ private:
     void drawHandRail();
 
 
+    void drawSolarSystem();
+    void drawEarth();
+    void drawMoon();
+
 private:
     GLfloat zRotate;
 

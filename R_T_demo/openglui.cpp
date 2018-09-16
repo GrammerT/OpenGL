@@ -126,7 +126,8 @@ void OpenglUI::paintGL()
     glDisable(GL_LIGHTING);
     drawAxis(15);
     glEnable(GL_LIGHTING);
-    drawStairs();
+//    drawStairs();
+    drawSolarSystem();
 }
 
 void OpenglUI::resizeGL(int w, int h)
@@ -140,7 +141,7 @@ void OpenglUI::resizeGL(int w, int h)
    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(fov,aspect,zNear,zFar);
-    gluLookAt(0.0,0.0,70.0,0.0,0.0,0.0,0.0,1.0,0.0);
+    gluLookAt(0.0,0.0,270.0,0.0,0.0,0.0,0.0,1.0,0.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -274,6 +275,73 @@ void OpenglUI::drawHandRail()
     glMaterialfv(GL_FRONT, GL_EMISSION,   earth_mat_emission);
     glMaterialf (GL_FRONT, GL_SHININESS, earth_mat_shininess);
     glutSolidCube(6);
+}
+
+void OpenglUI::drawSolarSystem()
+{
+    GLfloat earth_mat_ambient[]   = {1.0f, 0.0f, 0.0f, 1.0f};  //定义材质的环境光颜色
+    GLfloat earth_mat_diffuse[]   = {1.0f, 0.0f, 0.0f, 1.0f};  //定义材质的漫反射光颜色
+    GLfloat earth_mat_specular[] = {1.0f, 0.0f, 0.0f, 1.0f};   //定义材质的镜面反射光颜色，红色
+    GLfloat earth_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};   //定义材质的辐射光颜色，为0
+    GLfloat earth_mat_shininess   = 30.0f;
+    glMaterialfv(GL_FRONT, GL_AMBIENT,    earth_mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE,    earth_mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,   earth_mat_specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION,   earth_mat_emission);
+    glMaterialf (GL_FRONT, GL_SHININESS, earth_mat_shininess);
+
+    glDisable(GL_LIGHTING);
+    drawAxis(70);
+    glEnable(GL_LIGHTING);
+    glutSolidSphere(30,10,10);
+    glPushMatrix();
+            glRotatef(zRotate,0.0,1.0,0.0);
+            glTranslatef(0.0,0.0,-75.0);
+            glRotatef(zRotate+2,0.0,1.0,0.0);
+            drawEarth();
+        glPushMatrix();
+            glRotatef(zRotate,0.0,1.0,0.0);
+            glTranslatef(0.0,0.0,-25.0);
+            glRotatef(zRotate+5,0.0,1.0,0.0);
+            drawMoon();
+        glPopMatrix();
+    glPopMatrix();
+}
+
+void OpenglUI::drawEarth()
+{
+    GLfloat earth_mat_ambient[]   = {0.0f, 1.0f, 0.0f, 1.0f};  //定义材质的环境光颜色
+    GLfloat earth_mat_diffuse[]   = {0.0f, 1.0f, 0.0f, 1.0f};  //定义材质的漫反射光颜色
+    GLfloat earth_mat_specular[] = {1.0f, 0.0f, 0.0f, 1.0f};   //定义材质的镜面反射光颜色，红色
+    GLfloat earth_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};   //定义材质的辐射光颜色，为0
+    GLfloat earth_mat_shininess   = 30.0f;
+    glMaterialfv(GL_FRONT, GL_AMBIENT,    earth_mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE,    earth_mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,   earth_mat_specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION,   earth_mat_emission);
+    glMaterialf (GL_FRONT, GL_SHININESS, earth_mat_shininess);
+    glDisable(GL_LIGHTING);
+    drawAxis(45);
+    glEnable(GL_LIGHTING);
+    glutSolidSphere(20,10,10);
+}
+
+void OpenglUI::drawMoon()
+{
+    GLfloat earth_mat_ambient[]   = {0.0f, 1.0f, 1.0f, 1.0f};  //定义材质的环境光颜色
+    GLfloat earth_mat_diffuse[]   = {0.0f, 1.0f, 1.0f, 1.0f};  //定义材质的漫反射光颜色
+    GLfloat earth_mat_specular[] = {1.0f, 0.0f, 0.0f, 1.0f};   //定义材质的镜面反射光颜色，红色
+    GLfloat earth_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};   //定义材质的辐射光颜色，为0
+    GLfloat earth_mat_shininess   = 30.0f;
+    glMaterialfv(GL_FRONT, GL_AMBIENT,    earth_mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE,    earth_mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,   earth_mat_specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION,   earth_mat_emission);
+    glMaterialf (GL_FRONT, GL_SHININESS, earth_mat_shininess);
+    glDisable(GL_LIGHTING);
+    drawAxis(25);
+    glEnable(GL_LIGHTING);
+    glutSolidSphere(10,10,10);
 }
 
 
