@@ -140,8 +140,7 @@ void OpenglUI::resizeGL(int w, int h)
    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(fov,aspect,zNear,zFar);
-//    glOrtho(-18,18,-18,18,2,100);
-    gluLookAt(0.0,0.0,20.0,0.0,0.0,0.0,0.0,1.0,0.0);
+    gluLookAt(0.0,0.0,70.0,0.0,0.0,0.0,0.0,1.0,0.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
