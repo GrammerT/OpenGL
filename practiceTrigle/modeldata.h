@@ -16,7 +16,10 @@ public:
 private:
     typedef QVector<QVector3D> vec3D;
     vec3D data;
+    typedef QVector<unsigned int> vecIndex;
+    vecIndex indexs;
     QOpenGLBuffer vbo;
+    QOpenGLBuffer ebo;
     QOpenGLVertexArrayObject vao;
 };
 
