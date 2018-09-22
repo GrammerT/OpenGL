@@ -12,13 +12,12 @@ public:
     ModelData();
     ~ModelData();
     void initData();
-
-
     void draw(QOpenGLShaderProgram &shader);
 private:
     typedef QVector<QVector3D> vec3D;
     vec3D data;
     QOpenGLBuffer vbo;
+    QOpenGLVertexArrayObject vao;
 };
 
 #endif // MODELDATA_H

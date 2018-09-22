@@ -15,6 +15,8 @@ ModelData::~ModelData()
 
 void ModelData::initData()
 {
+    vao.create();
+    vao.bind();
     vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
     vbo.create();
     vbo.bind();
@@ -29,5 +31,5 @@ void ModelData::draw(QOpenGLShaderProgram &shader)
     int pos = shader.attributeLocation("aPos");
     shader.enableAttributeArray(pos);
     shader.setAttributeBuffer(pos,GL_FLOAT,0,3,sizeof(QVector3D));
-    glDrawArrays(GL_TRIANGLES,0,sizeof(QVector3D));
+    glDrawArrays(GL_TRIANGLES,0,data.count());
 }
