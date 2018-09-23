@@ -44,19 +44,30 @@ void ModelData::initData()
 
 void ModelData::draw(QOpenGLShaderProgram &shader)
 {
-//    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
-    // If VAOs are not supported, set the vertex attributes every time.
-//    if (vao.isCreated())
-//    {
 
-//    }
-//    else
     {
         int pos = shader.attributeLocation("aPos");
         shader.enableAttributeArray(pos);
         shader.setAttributeBuffer(pos,GL_FLOAT,0,3,sizeof(QVector3D));
-//        shader.setAttributeBuffer(pos,GL_UNSIGNED_INT,0,3,0);
+        int color = shader.uniformLocation("color");
+        shader.enableAttributeArray(color);
+        shader.setUniformValue(color,QVector4D(0.9,0.1,0.1,1.0));
+
     }
-//    glDrawArrays(GL_TRIANGLES,0,data.count());
+
+    QMatrix4x4 mat1;
+    static int rotate=0;
+    mat1.translate(0.5,0.5,0.0);
+    mat1.rotate(rotate++,0.0,0.0,1.0);
+    int modelMat= shader.uniformLocation("modelMat");
+    shader.enableAttributeArray(modelMat);
+    shader.setUniformValue(modelMat,mat1);
+    glDrawElements(GL_TRIANGLES,indexs.count(),GL_UNSIGNED_INT,0);
+    QMatrix4x4 mat2;
+    mat2.translate(-0.5,0.5,0.0);
+    mat2.rotate(rotate+=3,0.0,0.0,1.0);
+    int modelMat1= shader.uniformLocation("modelMat");
+    shader.enableAttributeArray(modelMat1);
+    shader.setUniformValue(modelMat1,mat2);
     glDrawElements(GL_TRIANGLES,indexs.count(),GL_UNSIGNED_INT,0);
 }
