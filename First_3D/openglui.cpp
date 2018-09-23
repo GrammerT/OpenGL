@@ -45,7 +45,7 @@ void OpenglUI::paintGL()
         QMatrix4x4 model;
         if(i%3==0)
         {
-            model.rotate(rotation);
+            model.rotate(ModelRotation);
         }
         model.translate(modelsCount[i]);
         int mat = shaderProcess.uniformLocation("ModelViewProjectionMatrix");
@@ -67,10 +67,21 @@ void OpenglUI::mouseMoveEvent(QMouseEvent *event)
         QVector2D newPos = (QVector2D)event->pos();
         QVector2D diff = newPos - mousePressPosition;
         qreal angle = (diff.length())/3.5;
-        // Rotation axis is perpendicular to the mouse position difference
+        // ModelRotation axis is perpendicular to the mouse position difference
         // vector
-        QVector3D rotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
-        rotation = QQuaternion::fromAxisAndAngle(rotationAxis, angle) * rotation;
+        QVector3D ModelRotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
+        ModelRotation = QQuaternion::fromAxisAndAngle(ModelRotationAxis, angle) * ModelRotation;
+        mousePressPosition = newPos;
+        this->update();
+    }
+    else
+    {
+        QVector2D newPos = (QVector2D)event->pos();
+        QVector2D diff = newPos - mousePressPosition;
+        qreal angle = (diff.length())/10.5;
+        QVector3D ModelRotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
+        viewRotation = QQuaternion::fromAxisAndAngle(ModelRotationAxis, angle);
+        view.rotate(viewRotation);
         mousePressPosition = newPos;
         this->update();
     }
@@ -100,6 +111,7 @@ void OpenglUI::initMatrix(int w,int h)
     {
         as = (GLfloat)h/(GLfloat)w;
     }
-    view.translate(0.0,0.0,-3.0);
+//    view.translate(0.0,0.0,-3.0);
+    view.lookAt(QVector3D(0.0,0.0,3.0),QVector3D(0.0,0.0,0.0),QVector3D(0.0,1.0,0.0));
     project.perspective(45.0,as,0.1,100.0);
 }

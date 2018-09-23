@@ -28,7 +28,8 @@ private:
     QMatrix4x4 project;
     QMatrix4x4 view;
 
-    QQuaternion rotation;
+    QQuaternion ModelRotation;
+    QQuaternion viewRotation;
     QVector2D mousePressPosition;
     QOpenGLShaderProgram shaderProcess;
     ModelData *md;
