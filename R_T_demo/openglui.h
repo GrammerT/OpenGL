@@ -28,8 +28,22 @@ public:
 private:
     void drawAxis(float length);
 
+    void drawRectRotateRectOrigin();
+
+    void drawStairs();
+    void drawOneLevel();
+    void drawHandRail();
+
+
+    void drawSolarSystem();
+    void drawEarth();
+    void drawMoon();
+
 private:
     GLfloat zRotate;
+
+    GLuint vertextVBO;
+    GLuint vertextIBO;
 };
 
 #endif // OPENGLUI_H
