@@ -1,13 +1,19 @@
 #version 430
 
-attribute vec4 Vertex;
-uniform mat4 ModelViewProjectionMatrix;
-uniform vec4 Color;
+attribute vec3 Vertex;
+uniform mat4 Model;
+uniform mat4 View;
+uniform mat4 Projection;
 
-out vec4 outColor;
+attribute vec3 normal;
+//uniform vec4 Color;
+
+out vec3 gNormal;
+out vec3 FragPos;
 
 void main(void)
 {
-    gl_Position = ModelViewProjectionMatrix * Vertex;
-    outColor = Color;
+    FragPos = vec3(Model * vec4(Vertex,1.0)); //! 点在世界坐标系下的位置
+    gNormal = normal;
+    gl_Position = Projection*View*Model *vec4(Vertex,1.0);
 }

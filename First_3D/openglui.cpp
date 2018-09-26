@@ -24,7 +24,9 @@ void OpenglUI::initializeGL()
     initializeOpenGLFunctions();
     initShader();
     md = new ModelData;
+    lightData = new LightModel;
     glClearColor(1.0,0.0,0.0,1.0);
+    glEnable(GL_DEPTH_TEST);
 
 }
 
@@ -40,18 +42,48 @@ void OpenglUI::paintGL()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     qDebug()<< shaderProcess.bind();
 
-    for(int i=0;i<modelsCount.size();++i)
+//    for(int i=0;i<2;++i)
     {
         QMatrix4x4 model;
-        if(i%3==0)
-        {
+//        if(i%3==0)
+//        {
             model.rotate(ModelRotation);
-        }
-        model.translate(modelsCount[i]);
-        int mat = shaderProcess.uniformLocation("ModelViewProjectionMatrix");
-        shaderProcess.enableAttributeArray(mat);
-        shaderProcess.setUniformValue(mat,project*view*model);
+//        }
+//        model.translate(modelsCount[i]);
+            int Model1 = shaderProcess.uniformLocation("Model");
+            shaderProcess.enableAttributeArray(Model1);
+            shaderProcess.setUniformValue(Model1,model);
+            int View1 = shaderProcess.uniformLocation("View");
+            shaderProcess.enableAttributeArray(View1);
+            shaderProcess.setUniformValue(View1,view);
+            int Projection = shaderProcess.uniformLocation("Projection");
+            shaderProcess.enableAttributeArray(Projection);
+            shaderProcess.setUniformValue(Projection,project);
+
+            int lightpos = shaderProcess.uniformLocation("lightPos");
+            shaderProcess.enableAttributeArray(lightpos);
+            shaderProcess.setUniformValue(lightpos,QVector3D(1.2f, 1.0f, 2.0f));
+
+            int lightColor = shaderProcess.uniformLocation("lightColor");
+            shaderProcess.enableAttributeArray(lightColor);
+            shaderProcess.setUniformValue(lightColor,QVector3D(1.0f, 1.0f, 1.0f));
+
+        shaderProcess.bind();
         md->draw(shaderProcess);
+//        shaderProcess.release();
+        lightShaderProcess.bind();
+
+        QMatrix4x4 LightMatrix;
+//        if(i%3==0)
+//        {
+        LightMatrix.translate(modelsCount[1]);
+        int lightMat = lightShaderProcess.uniformLocation("ModelViewProjectionMatrix");
+        lightShaderProcess.enableAttributeArray(lightMat);
+        lightShaderProcess.setUniformValue(lightMat,project*view*LightMatrix);
+
+        lightData->draw(lightShaderProcess);
+//        lightShaderProcess.release();
+
     }
 }
 
@@ -96,6 +128,13 @@ void OpenglUI::initShader()
     shaderProcess.addShaderFromSourceFile(QOpenGLShader::Fragment,":/fragment.frag");
     qDebug()<<shaderProcess.link();
     shaderProcess.bind();
+
+    qDebug()<< lightShaderProcess.create();
+    lightShaderProcess.addShaderFromSourceFile(QOpenGLShader::Vertex,":/lightvertex.vert");
+    lightShaderProcess.addShaderFromSourceFile(QOpenGLShader::Fragment,":/lightfrag.frag");
+    qDebug()<<lightShaderProcess.link();
+    lightShaderProcess.bind();
+
 }
 
 void OpenglUI::initMatrix(int w,int h)

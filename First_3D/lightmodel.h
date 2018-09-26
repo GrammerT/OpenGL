@@ -1,29 +1,29 @@
-#ifndef MODELDATA_H
-#define MODELDATA_H
+#ifndef LIGHTMODEL_H
+#define LIGHTMODEL_H
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
 #include <QVector3D>
 #include <QVector>
 #include <QOpenGLShaderProgram>
 
-class ModelData
+
+class LightModel
 {
 public:
-    ModelData();
-    ~ModelData();
+    LightModel();
     void initData();
     void draw(QOpenGLShaderProgram &shader);
 private:
     typedef QVector<QVector3D> vec3D;
-    vec3D data;
-    vec3D normal;
     typedef QVector<unsigned int> vecIndex;
+
+    vec3D data;
     vecIndex indexs;
     QOpenGLBuffer vbo;
     QOpenGLBuffer ebo;
-    QOpenGLBuffer normalBuffer;
 
     QOpenGLVertexArrayObject vao;
 };
 
-#endif // MODELDATA_H
+
+#endif // LIGHTMODEL_H

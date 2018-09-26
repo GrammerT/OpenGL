@@ -26,13 +26,17 @@ include("../dependence/dependence.pri")
 SOURCES += main.cpp\
         widget.cpp \
     modeldata.cpp \
-    openglui.cpp
+    openglui.cpp \
+    lightmodel.cpp
 
 HEADERS  += widget.h \
     modeldata.h \
-    openglui.h
+    openglui.h \
+    lightmodel.h
 
 FORMS    += widget.ui
 
 RESOURCES += \
     shader.qrc
+
+DISTFILES +=
