@@ -221,5 +221,27 @@ void FormGraphics::formRoundTable(UnizModelData *data, QVector3D upCenter, float
 //            oneRingPoints.push_back(point);
 //        }
 //        points.push_back(oneRingPoints);
-//    }
+    //    }
+}
+
+void FormGraphics::formSupportTouch(UnizModelData *data)
+{
+
+}
+
+
+
+void FormGraphics::formSupportHead(UnizModelData *data)
+{
+
+}
+
+void FormGraphics::formSupportBody(UnizModelData *data)
+{
+
+}
+
+void FormGraphics::formSupportFoot(UnizModelData *data)
+{
+
 }
