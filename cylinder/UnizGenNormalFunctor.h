@@ -27,8 +27,6 @@ struct UnizGenNormalFunctor
     inline void operator()(const QVector3D &v1, const QVector3D &v2, const QVector3D& v3)
     {
         QVector3D normal = QVector3D::crossProduct(v2 - v1, v3 - v1);
-//        QVector3D normal = QVector3D::crossProduct(v2 - v1, v3 - v1);
-
         normal.normalize();
 
         _normals->push_back(normal);
