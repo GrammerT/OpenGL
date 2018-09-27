@@ -87,9 +87,9 @@ void LightModel::draw(QOpenGLShaderProgram &shader)
 //        int objectColor = shader.uniformLocation("objectColor");
 //        shader.enableAttributeArray(objectColor);
 //        shader.setUniformValue(objectColor,QVector3D(1.0f, 0.5f, 0.31f));
-        int lightColor = shader.uniformLocation("lightColor");
-        shader.enableAttributeArray(lightColor);
-        shader.setUniformValue(lightColor,QVector3D(1.0f, 1.0f, 1.0f));
+//        int lightColor = shader.uniformLocation("lightColor");
+//        shader.enableAttributeArray(lightColor);
+//        shader.setUniformValue(lightColor,QVector3D(1.0f, 1.0f, 1.0f));
 
     }
     glDrawElements(GL_TRIANGLES,indexs.count(),GL_UNSIGNED_INT,0);

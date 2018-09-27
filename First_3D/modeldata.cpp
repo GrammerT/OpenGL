@@ -12,84 +12,84 @@ ModelData::ModelData()
     data.push_back(QVector3D(0.5,0.5,-0.5));
     data.push_back(QVector3D(-0.5,0.5,-0.5));
 
+    normal.push_back(QVector3D(0.0,0.0,1.0));
+    normal.push_back(QVector3D(0.0,0.0,1.0));
+    normal.push_back(QVector3D(0.0,0.0,1.0));
+    normal.push_back(QVector3D(0.0,0.0,1.0));
+    normal.push_back(QVector3D(0.0,0.0,1.0));
+    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(0);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(1);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(2);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(2);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(3);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
     indexs.push_back(0);
-    normal.push_back(QVector3D(0.0,0.0,1.0));
 
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
+    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(0);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(4);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(1);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(1);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(4);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
     indexs.push_back(5);
-    normal.push_back(QVector3D(0.0,-1.0,0.0));
 
 
-    indexs.push_back(4);
     normal.push_back(QVector3D(0.0,0.0,-1.0));
+    normal.push_back(QVector3D(0.0,0.0,-1.0));
+    normal.push_back(QVector3D(0.0,0.0,-1.0));
+    normal.push_back(QVector3D(0.0,0.0,-1.0));
+    normal.push_back(QVector3D(0.0,0.0,-1.0));
+    normal.push_back(QVector3D(0.0,0.0,-1.0));
+    indexs.push_back(4);
     indexs.push_back(7);
-    normal.push_back(QVector3D(0.0,0.0,-1.0));
     indexs.push_back(6);
-    normal.push_back(QVector3D(0.0,0.0,-1.0));
     indexs.push_back(4);
-    normal.push_back(QVector3D(0.0,0.0,-1.0));
     indexs.push_back(6);
-    normal.push_back(QVector3D(0.0,0.0,-1.0));
     indexs.push_back(5);
-    normal.push_back(QVector3D(0.0,0.0,-1.0));
 
-    indexs.push_back(3);
     normal.push_back(QVector3D(0.0,1.0,0.0));
+    normal.push_back(QVector3D(0.0,1.0,0.0));
+    normal.push_back(QVector3D(0.0,1.0,0.0));
+    normal.push_back(QVector3D(0.0,1.0,0.0));
+    normal.push_back(QVector3D(0.0,1.0,0.0));
+    normal.push_back(QVector3D(0.0,1.0,0.0));
+    indexs.push_back(3);
     indexs.push_back(2);
-    normal.push_back(QVector3D(0.0,1.0,0.0));
     indexs.push_back(6);
-    normal.push_back(QVector3D(0.0,1.0,0.0));
     indexs.push_back(3);
-    normal.push_back(QVector3D(0.0,1.0,0.0));
     indexs.push_back(6);
-    normal.push_back(QVector3D(0.0,1.0,0.0));
     indexs.push_back(7);
-    normal.push_back(QVector3D(0.0,1.0,0.0));
 
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
+    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(0);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(3);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(4);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(4);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(3);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
     indexs.push_back(7);
-    normal.push_back(QVector3D(-1.0,0.0,0.0));
 
+    normal.push_back(QVector3D(1.0,0.0,0.0));
+    normal.push_back(QVector3D(1.0,0.0,0.0));
+    normal.push_back(QVector3D(1.0,0.0,0.0));
+    normal.push_back(QVector3D(1.0,0.0,0.0));
+    normal.push_back(QVector3D(1.0,0.0,0.0));
+    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(1);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(5);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(2);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(2);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(5);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
     indexs.push_back(6);
-    normal.push_back(QVector3D(1.0,0.0,0.0));
 
     initData();
 }
@@ -109,20 +109,22 @@ void ModelData::initData()
     qDebug()<<sizeof(GL_FLOAT);
     vbo.allocate(data.constData(),data.count()*sizeof(QVector3D));
 
+    normalBuffer.create();
+    normalBuffer.bind();
+    normalBuffer.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    normalBuffer.allocate(normal.constData(),sizeof(QVector3D)*normal.count());
+
     ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
     ebo.create();
     ebo.bind();
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     ebo.allocate(indexs.constData(),indexs.count()*sizeof(unsigned int));
 
-    normalBuffer.create();
-    normalBuffer.bind();
-    normalBuffer.setUsagePattern(QOpenGLBuffer::StaticDraw);
-    normalBuffer.allocate(normal.data(),sizeof(QVector3D)*normal.size());
 }
 
 void ModelData::draw(QOpenGLShaderProgram &shader)
 {
+    ebo.bind();
     {
         int objectColor = shader.uniformLocation("objectColor");
         shader.enableAttributeArray(objectColor);
@@ -137,8 +139,6 @@ void ModelData::draw(QOpenGLShaderProgram &shader)
         int norm = shader.attributeLocation("normal");
         shader.enableAttributeArray(norm);
         shader.setAttributeBuffer(norm,GL_FLOAT,0,3,sizeof(QVector3D));
-
     }
-    ebo.bind();
     glDrawElements(GL_TRIANGLES,indexs.count(),GL_UNSIGNED_INT,0);
 }
