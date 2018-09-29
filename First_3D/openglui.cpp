@@ -1,6 +1,7 @@
 #include "openglui.h"
 #include <QDebug>
 #include <QMouseEvent>
+#include <QtMath>
 
 
 OpenglUI::OpenglUI(QWidget *parent)
@@ -17,6 +18,13 @@ OpenglUI::OpenglUI(QWidget *parent)
     modelsCount.push_back(QVector3D(1.5f,  2.0f, -2.5f));
     modelsCount.push_back(QVector3D(1.5f,  0.2f, -1.5f));
     modelsCount.push_back(QVector3D(-1.3f,  1.0f, -1.5f));
+    viewInfo.eye = QVector3D(0.0,0.0,3.0);
+    viewInfo.center = QVector3D(0.0,0.0,0.0);
+    viewInfo.up = QVector3D(0.0,1.0,0.0);
+
+    qDebug()<<qSin(M_PI/6); //30
+    qDebug()<<qCos(M_PI/3); //60
+
 }
 
 void OpenglUI::initializeGL()
@@ -62,30 +70,56 @@ void OpenglUI::mousePressEvent(QMouseEvent *event)
 
 void OpenglUI::mouseMoveEvent(QMouseEvent *event)
 {
+    QVector2D newPos = (QVector2D)event->pos();
+    QVector2D diff = newPos - mousePressPosition;
     if(event->buttons() == Qt::LeftButton)
     {
-        QVector2D newPos = (QVector2D)event->pos();
-        QVector2D diff = newPos - mousePressPosition;
         qreal angle = (diff.length())/3.5;
         // ModelRotation axis is perpendicular to the mouse position difference
         // vector
         QVector3D ModelRotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
         ModelRotation = QQuaternion::fromAxisAndAngle(ModelRotationAxis, angle) * ModelRotation;
-        mousePressPosition = newPos;
-        this->update();
     }
     else
     {
-        QVector2D newPos = (QVector2D)event->pos();
-        QVector2D diff = newPos - mousePressPosition;
         qreal angle = (diff.length())/10.5;
         QVector3D ModelRotationAxis = QVector3D(diff.y(), diff.x(), 0.0).normalized();
         viewRotation = QQuaternion::fromAxisAndAngle(ModelRotationAxis, angle);
-        view.rotate(viewRotation);
-        mousePressPosition = newPos;
-        this->update();
+//        view.rotate(viewRotation);
+        float radius = 10.0f;
+        static float i = 360.0;
+        float z = qSin(2*M_PI/i) * radius;
+        float x = qCos(2*M_PI/i)*radius;
+        i-=0.01;
+        if(i<1)
+            i=360.0;
+        viewInfo.eye = QVector3D(x,0.0,z);
+        view.lookAt(viewInfo.eye,viewInfo.center,viewInfo.up);
     }
+    mousePressPosition = newPos;
+    this->update();
     event->accept();
+}
+
+void OpenglUI::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_W:
+        view.translate(0.0,0.0,2.0);
+        break;
+    case Qt::Key_S:
+        view.translate(0.0,0.0,-2.0);
+        break;
+    case Qt::Key_D:
+        view.translate(2.0,0.0,0.0);
+        break;
+    case Qt::Key_A:
+        view.translate(-2.0,0.0,0.0);
+        break;
+    default:
+        break;
+    }
+    this->update();
 }
 
 
@@ -111,7 +145,6 @@ void OpenglUI::initMatrix(int w,int h)
     {
         as = (GLfloat)h/(GLfloat)w;
     }
-//    view.translate(0.0,0.0,-3.0);
-    view.lookAt(QVector3D(0.0,0.0,3.0),QVector3D(0.0,0.0,0.0),QVector3D(0.0,1.0,0.0));
+    view.lookAt(viewInfo.eye,viewInfo.center,viewInfo.up);
     project.perspective(45.0,as,0.1,100.0);
 }

@@ -26,11 +26,13 @@ include("../dependence/dependence.pri")
 SOURCES += main.cpp\
         widget.cpp \
     modeldata.cpp \
-    openglui.cpp
+    openglui.cpp \
+    camera.cpp
 
 HEADERS  += widget.h \
     modeldata.h \
-    openglui.h
+    openglui.h \
+    camera.h
 
 FORMS    += widget.ui
 

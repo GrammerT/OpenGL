@@ -7,6 +7,16 @@
 #include <QMatrix4x4>
 #include <QVector2D>
 #include <QQuaternion>
+#include "camera.h"
+
+typedef struct view_info
+{
+public:
+    QVector3D eye;
+    QVector3D center;
+    QVector3D up;
+}ViewInfo;
+
 
 class OpenglUI : public QOpenGLWidget,protected QOpenGLFunctions
 {
@@ -20,6 +30,8 @@ public:
     virtual void mousePressEvent(QMouseEvent *event)override;
     virtual void mouseMoveEvent(QMouseEvent *event)override;
 
+    virtual void keyPressEvent(QKeyEvent *event);
+
 private:
     void initShader();
     void initMatrix(int w, int h);
@@ -30,6 +42,8 @@ private:
 
     QQuaternion ModelRotation;
     QQuaternion viewRotation;
+    ViewInfo viewInfo;
+    Camera m_Camera;
     QVector2D mousePressPosition;
     QOpenGLShaderProgram shaderProcess;
     ModelData *md;
