@@ -4,6 +4,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLFunctions>
 #include "modeldata.h"
+#include "lightmodel.h"
 #include <QMatrix4x4>
 #include <QVector2D>
 #include <QQuaternion>
@@ -46,7 +47,9 @@ private:
     Camera m_Camera;
     QVector2D mousePressPosition;
     QOpenGLShaderProgram shaderProcess;
+    QOpenGLShaderProgram lightShaderProcess;
     ModelData *md;
+    LightModel *lightData;
     typedef QVector<QVector3D> vec3D;
     vec3D modelsCount;
 };

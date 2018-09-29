@@ -101,9 +101,9 @@ void UnizModelData::draw(QOpenGLShaderProgram &program)
     {
         mArrayBufInitialized = true;
         initializeOpenGLFunctions();
-        Vec3Array &vertexes = *m_pUniqueVertexes.data();
 
-        mArrayBuffer = QSharedPointer<QOpenGLBuffer>(new QOpenGLBuffer);
+        const Vec3Array &vertexes = *m_pUniqueVertexes.data();
+        mArrayBuffer = QSharedPointer<QOpenGLBuffer>(new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer));
         qDebug()<<mArrayBuffer->create();
         qDebug()<<mArrayBuffer->bind();
         mArrayBuffer->allocate(&(vertexes[0]), sizeof(QVector3D)*vertexes.size());
@@ -116,11 +116,15 @@ void UnizModelData::draw(QOpenGLShaderProgram &program)
 
 
         const Vec3Array *pNormals = m_pNormals.data();
-        mNormalBuffer.create();
-        mNormalBuffer.bind();
-        mNormalBuffer.allocate(&(*pNormals)[0], sizeof(QVector3D)*(pNormals->size()));
+        mNormalBuffer = QSharedPointer<QOpenGLBuffer>(new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer));
+        qDebug()<<mNormalBuffer->create();
+        qDebug()<<mNormalBuffer->bind();
+        mNormalBuffer->allocate(&(*pNormals)[0], sizeof(QVector3D)*(pNormals->size()));
+
     }
-//    qDebug()<<mNormalBuffer.bind();
+
+    qDebug()<<mIndexBuffer->bind();
+    qDebug()<<mNormalBuffer->bind();
     int normalLocation = program.attributeLocation("VertexNormal");
     program.enableAttributeArray(normalLocation);
     program.setAttributeBuffer(normalLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
@@ -130,10 +134,8 @@ void UnizModelData::draw(QOpenGLShaderProgram &program)
     program.enableAttributeArray(vertexLocation);
     program.setAttributeBuffer(vertexLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
 
-//    qDebug()<<mIndexBuffer->bind();
-
-
     glDrawElements(GL_TRIANGLES,m_pIndices.data()->size(),GL_UNSIGNED_INT,0);
+
 }
 
 void UnizModelData::correctVertexArray()

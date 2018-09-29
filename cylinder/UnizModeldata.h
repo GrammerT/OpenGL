@@ -67,7 +67,7 @@ private:
 	
     QSharedPointer<QOpenGLBuffer> mArrayBuffer;
     QSharedPointer<QOpenGLBuffer> mIndexBuffer;
-    QOpenGLBuffer mNormalBuffer;
+    QSharedPointer<QOpenGLBuffer> mNormalBuffer;
     QOpenGLBuffer mColorBuffer;
 
     bool mArrayBufInitialized;

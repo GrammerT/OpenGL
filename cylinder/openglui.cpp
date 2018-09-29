@@ -12,7 +12,9 @@ OpenglUI::OpenglUI(QWidget *parent)
     ,zTrans(-100.0)
 {
     m_data = new UnizModelData;
-    FormGraphics::formCircle(m_data,QVector3D(0,0,0),40.0);
+//    FormGraphics::formCircle(m_data,QVector3D(0,0,0),40.0);
+    FormGraphics::formRoundTable(m_data,QVector3D(0,0,5),1.2,QVector3D(0,0,-5),4.0);
+
     this->setFocusPolicy(Qt::StrongFocus);
     QTimer *timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimerout()));
@@ -46,15 +48,12 @@ void OpenglUI::initializeGL()
     initShader();
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    glShadeModel(GL_FLAT);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_COLOR_MATERIAL);
     view.setToIdentity();
     view.lookAt(QVector3D(0.0f, 0.0f, 20.0f), QVector3D(0.0f,0.0f,1.0f), QVector3D(0.0f,1.0f,0.0f));
     qDebug()<<view;
-    //    program.setUniformValue("Kd", QVector3D(0.0f, 1.0f, 0.0f));//!  model's color.
-//    program.setUniformValue("Ld", QVector3D(1.0f, 1.0f, 1.0f)); //! model reflect level of light.
-//    program.setUniformValue("LightPosition",  QVector4D(0.0f,0.0f,80.0f,1.0f));
-    QVector4D worldLight = QVector4D(0.0f,0.0f,2.0f,1.0f);
-    program.setUniformValue("Light.Position", view * worldLight );
+
 
     /**
         1.材料反射率都为0，则物体显示黑色
@@ -62,14 +61,17 @@ void OpenglUI::initializeGL()
         3.只有镜面反射，其他为0，则对应的面会显示颜色
         4.
     */
-    program.setUniformValue("Material.RateAmbient", 1.0f, 1.0f, 1.0f);
-    program.setUniformValue("Material.RateDiffuse", 1.0f, 1.0f, 0.0f);
-    program.setUniformValue("Material.RateSpecular", 0.0f, 1.0f, 0.0f);
+    program.setUniformValue("Material.RateAmbient", 0.9f, 0.5f, 0.3f);
+    program.setUniformValue("Material.RateDiffuse", 0.9f, 0.5f, 0.3f);
+    program.setUniformValue("Material.RateSpecular", 0.8f, 0.8f, 0.8f);
+    program.setUniformValue("Material.Shininess", 100.0f);
 
-    program.setUniformValue("Light.LightAmbient", 0.0f, 0.0f, 0.0f);
+    program.setUniformValue("Light.LightAmbient", 0.4f, 0.4f, 0.4f);
     program.setUniformValue("Light.LightDiffuse", 1.0f, 1.0f, 1.0f);
     program.setUniformValue("Light.LightSpecular", 1.0f, 1.0f, 1.0f);
-    program.setUniformValue("Material.Shininess", 100.0f);
+
+    QVector4D worldLight = QVector4D(0.0f,0.0f,20.0f,1.0f);
+    program.setUniformValue("Light.Position", view * worldLight );
 }
 
 void OpenglUI::paintGL()
@@ -77,6 +79,7 @@ void OpenglUI::paintGL()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
     QMatrix4x4 matrix;
+    matrix.setToIdentity();
     matrix.translate(0.0, 0.0, zTrans);
     matrix.rotate(rotation);
     QMatrix4x4 MVP = projection*view*matrix;
@@ -84,7 +87,7 @@ void OpenglUI::paintGL()
     program.setUniformValue("MVP", MVP);
     program.setUniformValue("ProjectionMatrix", projection);
     program.setUniformValue("NormalMatrix", (view*matrix).normalMatrix());
-
+    program.bind();
     if(m_data)
     {
         m_data->draw(program);
@@ -164,14 +167,14 @@ void OpenglUI::mouseMoveEvent(QMouseEvent *event)
 
 void OpenglUI::wheelEvent(QWheelEvent *event)
 {
-    QPoint p = event->angleDelta()/8.0;
+    QPoint p = event->angleDelta()/5.0;
     if(p.y()<0)
     {
-        zTrans -= 0.25f;
+        zTrans -= 0.75f;
     }
     else
     {
-        zTrans += 0.25f;
+        zTrans += 0.75f;
     }
     this->update();
 
