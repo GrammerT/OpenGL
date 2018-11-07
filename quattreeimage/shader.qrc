@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>function.frag</file>
+        <file>function.vert</file>
+        <file>fshaderPickFace.glsl</file>
+        <file>vshaderPickFace.glsl</file>
+    </qresource>
+</RCC>
