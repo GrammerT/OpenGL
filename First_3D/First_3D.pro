@@ -27,11 +27,13 @@ SOURCES += main.cpp\
         widget.cpp \
     modeldata.cpp \
     openglui.cpp \
+    camera.cpp  \
     lightmodel.cpp
 
 HEADERS  += widget.h \
     modeldata.h \
     openglui.h \
+    camera.h \
     lightmodel.h
 
 FORMS    += widget.ui
