@@ -17,6 +17,10 @@ Widget::Widget(QWidget *parent) :
     layout->addWidget(btn);
     this->setLayout(layout);
     connect(btn,SIGNAL(clicked(bool)),xx,SLOT(onImageClick()));
+    QPushButton *cap = new QPushButton;
+    layout->addWidget(cap);
+    cap->setText(tr("Capture"));
+    connect(cap,SIGNAL(clicked(bool)),xx,SLOT(onCaptureImage()));
 }
 
 Widget::~Widget()

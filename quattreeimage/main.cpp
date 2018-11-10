@@ -1,5 +1,6 @@
 #include "widget.h"
 #include <QApplication>
+#include <QtMath>
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,9 @@ int main(int argc, char *argv[])
 
         ++_curColorIndex;
     }
+    int ln = ceil(qLn(13.0)/qLn(2));
+    int uppow = qPow(2,ln);
+
 
 
 

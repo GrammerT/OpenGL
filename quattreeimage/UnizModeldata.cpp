@@ -3,6 +3,7 @@
 #include <QVector>
 #include <QOpenGLShaderProgram>
 #include <array>
+#include <QColor>
 
 struct CollectVertexesFunctor
 {
@@ -37,6 +38,7 @@ UnizModelData::UnizModelData()
     m_pColors->push_back(QVector3D(1,0,0));
     m_pColors->push_back(QVector3D(1,0,0));
     m_pColors->push_back(QVector3D(1,0,0));
+    m_pDiffColors = QSharedPointer<Vec4Array>(new Vec4Array);
 }
 
 UnizModelData::~UnizModelData()
@@ -113,27 +115,29 @@ void UnizModelData::draw(QOpenGLShaderProgram &program)
         qDebug()<< mIndexBuffer->create();
         qDebug()<<mIndexBuffer->bind();
         mIndexBuffer->allocate(&(*pIndexs)[0], sizeof(unsigned int)*(pIndexs->size()));
-//        const Vec3Array *pNormals = m_pNormals.data();
-//        mNormalBuffer = QSharedPointer<QOpenGLBuffer>(new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer));
-//        qDebug()<<mNormalBuffer->create();
-//        qDebug()<<mNormalBuffer->bind();
-//        mNormalBuffer->allocate(&(*pNormals)[0], sizeof(QVector3D)*(pNormals->size()));
 
+        const Vec4Array *pColors = m_pDiffColors.data();
+        mColorBuffer.create();
+        mColorBuffer.bind();
+        mColorBuffer.allocate(&(*pColors)[0], sizeof(QVector4D)*(pColors->size()));
     }
 
     qDebug()<<mIndexBuffer->bind();
-//    qDebug()<<mNormalBuffer->bind();
-//    int normalLocation = program.attributeLocation("VertexNormal");
-//    program.enableAttributeArray(normalLocation);
-//    program.setAttributeBuffer(normalLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
 
     qDebug()<<mArrayBuffer->bind();
     int vertexLocation = program.attributeLocation("VertexPosition");
     program.enableAttributeArray(vertexLocation);
     program.setAttributeBuffer(vertexLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
-
-    glDrawElements(GL_TRIANGLES,m_pIndices.data()->size(),GL_UNSIGNED_INT,0);
-
+    //! set color pointer attribute
+    int colorLocation = program.attributeLocation("a_color");
+    if (colorLocation != -1)
+    {
+        mColorBuffer.bind();
+        program.enableAttributeArray(colorLocation);
+        program.setAttributeBuffer(colorLocation, GL_FLOAT, 0, 4, sizeof(QVector4D));
+    }
+//    glDrawElements(GL_TRIANGLES,m_pIndices.data()->size(),GL_UNSIGNED_INT,0);
+    glDrawArrays(GL_TRIANGLES,0,m_pUniqueVertexes->size());
 }
 
 void UnizModelData::drawByDiffColors(QOpenGLShaderProgram &program)
@@ -151,12 +155,12 @@ QSharedPointer<Box> UnizModelData::boundingBox(QMatrix4x4 matrix)
     return m_box;
 }
 
-UnizModelData::Vec3Array *UnizModelData::getPDiffColors() const
+UnizModelData::Vec4Array *UnizModelData::getPDiffColors() const
 {
     return m_pDiffColors.data();
 }
 
-void UnizModelData::setPDiffColors(const QSharedPointer<Vec3Array> &pDiffColors)
+void UnizModelData::setPDiffColors(const QSharedPointer<Vec4Array> &pDiffColors)
 {
     m_pDiffColors = pDiffColors;
 }
@@ -212,7 +216,36 @@ void UnizModelData::formHedge(unsigned int p1, unsigned int p2, unsigned int p3)
     _hedgeBase += 3;
 }
 
-UnizModelData::Vec3Array* UnizModelData::getPColors() const
+void UnizModelData::formColors(unsigned int p1, unsigned int p2, unsigned int p3)
+{
+    static int _currentIndex = 0;
+    QColor currentColor;
+
+    int red = _currentIndex & 0xff;
+    int green = (_currentIndex >> 8) & 0xff;
+    int blue = (_currentIndex >> 16) & 0xff;
+    int alpha = 255;
+    qDebug()<<" red "<<red;
+    currentColor.setRgb(red,green,blue,alpha);
+
+    QVector4D currentColorF(currentColor.redF(),
+                            currentColor.greenF(),
+                            currentColor.blueF(),
+                            currentColor.alphaF());
+
+    qDebug()<<currentColor.redF()<<" "
+           <<currentColor.greenF()<<" "
+          <<currentColor.blueF()<<" "
+         <<currentColor.alphaF();
+
+    m_pDiffColors->push_back(currentColorF);
+    m_pDiffColors->push_back(currentColorF);
+    m_pDiffColors->push_back(currentColorF);
+
+    _currentIndex+=20;
+}
+
+UnizModelData::Vec3Array *UnizModelData::getPColors() const
 {
     return m_pColors.data();
 }
@@ -271,6 +304,11 @@ void Box::draw(QOpenGLShaderProgram &program)
         qDebug()<< mIndexBuffer->create();
         qDebug()<<mIndexBuffer->bind();
         mIndexBuffer->allocate(&(_index[0]), sizeof(unsigned int)*(_index.size()));
+
+        //! create color buffer
+
+
+
     }
     qDebug()<<mIndexBuffer->bind();
     qDebug()<<mArrayBuffer->bind();
@@ -278,6 +316,8 @@ void Box::draw(QOpenGLShaderProgram &program)
     int vertexLocation = program.attributeLocation("VertexPosition");
     program.enableAttributeArray(vertexLocation);
     program.setAttributeBuffer(vertexLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
+
+
     glDrawElements(GL_QUADS,_index.size(),GL_UNSIGNED_INT,0);
 }
 

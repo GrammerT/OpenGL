@@ -31,12 +31,22 @@ public:
 
 public slots:
     void onImageClick();
+    void onCaptureImage();
 
 private:
     void formTray();
     void formModelData(QSharedPointer<UnizModelData> data);
     void initShader();
-    void initColors();
+    /**
+     * @brief generatePoint
+     * @param img : image
+     * @param distance : two point min distance.
+     * @param aspect : real distance and pixel aspect
+     */
+    void generatePoint(QImage &img, float distance, float aspect);
+    QImage mergeTwoImage(QImage baseImage,QImage upImage);
+    void capturePoint(QImage image, int distance_pixel, int tree_deep);
+    QImage painterRectToImage(QImage image,QVector<QRect> &rects);
 private:
     QOpenGLShaderProgram program;
     QOpenGLShaderProgram faceProgram;

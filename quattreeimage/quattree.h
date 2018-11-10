@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QRectF>
 #include <QList>
+#include <QQueue>
 #include "supporttool.h"
 
 #define SAFE_DELETE(ptr) if(ptr){delete ptr;ptr=NULL;}
@@ -16,13 +17,14 @@ class QuatTree
     typedef QSharedPointer<QuatTree> spTree;
     typedef QVector<spTree> TreeList;
 public:
-    QuatTree(QRectF &rect,int tree_deep)
+    QuatTree(QRect &rect,int tree_deep=0)
+        :_rect(rect)
     {
         QQueue<QuatTree*> queue;
         queue.push_back(this);
-        for(auto level=0;tree_deep!=0;--tree_deep,level*=4)
+        for(auto level=1;tree_deep!=0;--tree_deep,level*=4)
         {
-            for(auto i=0;i!=c;++i)
+            for(auto i=0;i!=level;++i)
             {
                 auto tree = queue.first();
                 tree->Root();
@@ -84,12 +86,12 @@ public:
         return ret;
     }
 
-    TreeList leafs()
+    QVector<QRect> leafs()
     {
-        TreeList v;
-        if(IsLeaf())
+        QVector<QRect> v;
+        if(isLeaf())
         {
-            v.push_back(this);
+            v.push_back(this->_rect);
         }
         else
         {
@@ -105,16 +107,22 @@ public:
         return v;
     }
 
-    spValue value() const;
-    void setValue(const spValue &value);
+    spValue value() const
+    {
+        return _value;
+    }
+    void setValue(const spValue &value)
+    {
+        _value = value;
+    }
 
 private:
     void Root()
     {
-        this->mPointer.LT = new QuatTree<Value>(QRectF(_rect.topLeft(),_rect.center()));
-        this->mPointer.RT = new QuatTree<Value>(QRectF(_rect.left()+_rect.width()*0.5,_rect.top(),_rect.width()*0.5,_rect.height()*0.5));
-        this->mPointer.LB = new QuatTree<Value>(QRectF(_rect.left(),_rect.top()+_rect.height()*0.5,_rect.width()*0.5,_rect.height()*0.5));
-        this->mPointer.RB = new QuatTree<Value>(QRectF(_rect.center(),_rect.bottomRight()));
+        this->mPointer.LT = new QuatTree(QRect(_rect.topLeft(),_rect.center()));
+        this->mPointer.RT = new QuatTree(QRect(_rect.left()+_rect.width()*0.5,_rect.top(),_rect.width()*0.5,_rect.height()*0.5));
+        this->mPointer.LB = new QuatTree(QRect(_rect.left(),_rect.top()+_rect.height()*0.5,_rect.width()*0.5,_rect.height()*0.5));
+        this->mPointer.RB = new QuatTree(QRect(_rect.center(),_rect.bottomRight()));
     }
 
     bool Remove(const spValue value)
@@ -149,18 +157,8 @@ private:
         }
     };
     Pointer mPointer;
-    QRectF _rect;
+    QRect _rect;
     spValue _value;
 };
-
-spValue QuatTree::value() const
-{
-    return _value;
-}
-
-void QuatTree::setValue(const spValue &value)
-{
-    _value = value;
-}
 
 #endif // QUATTREE_H

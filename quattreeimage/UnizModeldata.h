@@ -93,6 +93,31 @@ public:
 
     void calculateBox(QVector3D vertex);
 
+    float left()
+    {
+        return min.x();
+    }
+
+    float right()
+    {
+        return max.x();
+    }
+
+    float up()
+    {
+        return max.y();
+    }
+
+    float down()
+    {
+        return min.y();
+    }
+
+    QVector3D center()
+    {
+        return  (max+min)*0.5;
+    }
+
     void draw(QOpenGLShaderProgram &program);
     void updataData();
 private:
@@ -111,6 +136,7 @@ class UnizModelData : private QOpenGLFunctions
 {
 public:
     typedef QVector<QVector3D> Vec3Array;
+    typedef QVector<QVector4D> Vec4Array;
     typedef QVector<unsigned int> IndexArray;
 
     UnizModelData();
@@ -124,7 +150,7 @@ public:
     Vec3Array* getNormalArray();
     const Vec3Array* getNormalArray() const;
 
-    Vec3Array* getPColors() const;
+    Vec3Array *getPColors() const;
     void setPColors(const QSharedPointer<Vec3Array> &pColors);
 
     void setIndiceArray(QSharedPointer<IndexArray> array);
@@ -141,20 +167,21 @@ public:
 
     QSharedPointer<Box> boundingBox(QMatrix4x4 matrix);
 
-    Vec3Array* getPDiffColors() const;
-    void setPDiffColors(const QSharedPointer<Vec3Array> &pDiffColors);
+    Vec4Array* getPDiffColors() const;
+    void setPDiffColors(const QSharedPointer<Vec4Array> &pDiffColors);
 
     QSharedPointer<vec_HEDGE> getPEdge() const;
     void setPEdge(const QSharedPointer<vec_HEDGE> &pEdge);
 
     void formHedge(unsigned int p1, unsigned int p2, unsigned int p3);
+    void formColors(unsigned int p1, unsigned int p2, unsigned int p3);
 private:
 
     //! attribute arraylist
     QSharedPointer<Vec3Array> m_pUniqueVertexes;
     QSharedPointer<Vec3Array> m_pNormals;
     QSharedPointer<Vec3Array> m_pColors;
-    QSharedPointer<Vec3Array> m_pDiffColors;
+    QSharedPointer<Vec4Array> m_pDiffColors;
     QSharedPointer<IndexArray> m_pIndices;
     QSharedPointer<Box> m_box;
 	
