@@ -129,7 +129,7 @@ void OpenglUI::onImageClick()
 
 void OpenglUI::onCaptureImage()
 {
-    float point_distance = 9;
+    float point_distance = 1.5;
     _box = data->boundingBox(_model);
     QMatrix4x4 projectMat;
     qDebug()<<_box->left()<<"\n"<<
@@ -174,6 +174,9 @@ void OpenglUI::onCaptureImage()
     image.save("haha.png");
     fbo.release();
     glDisable(GL_DEPTH_TEST);
+    QVector3D changed_point_start = _model.mapVector(QVector3D(0.0,0.0,0.0));;
+    QVector3D changed_point_end = _model.mapVector(QVector3D(0.0,0.0,point_distance));
+    point_distance = changed_point_start.distanceToPoint(changed_point_end);
     generatePoint(image,point_distance,aspect);
 }
 
