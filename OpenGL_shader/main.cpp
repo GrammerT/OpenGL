@@ -12,61 +12,21 @@ using namespace std;
 
 
 
+
 GLfloat vertices[] = {
-    -0.5f, -0.5f, 0.0f,   1.0,0,  0,
-     0.5f, -0.5f, 0.0f,   0,  1.0,0,
-     0.0f,  0.5f, 0.0f,   0,  0,  1.0,
-     0.8f,0.8f,0.0f,      0.3,0.5,0.7
+//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
+     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
+    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
+    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
 };
 
-//GLfloat vertices[] = {
-//    -0.5f, -0.5f, 0.0f,
-//    0.5f, -0.5f, 0.0f,
-//   0.0f,  0.5f, 0.0f,
-//    0.5f, -0.5f, 0.0f,
-//   0.0f,  0.5f, 0.0f,
-//    0.8f,  0.8f, 0.0f,
-
-//};
 
 uint32_t indices[]={
     0,1,2,
-    2,3,1
+    2,3,0
 };
 
-
-
-const char *vs = "#version 330 core \n"
-"layout (location = 6) in vec3 pos; \n"
-"layout (location = 7) in vec3 acolor; \n"
-"out vec4 vertexColor;\n"
-"void main()\n"
-"{\n"
-    "gl_Position = vec4(pos.x,pos.y,pos.z,1.0);\n"
-    "vertexColor = vec4(acolor.x,acolor.y,acolor.z, 1.0f);\n"
-"}\n";
-
-const char *fs = "#version 330 core\n"
-"in vec4 vertexColor;\n"
-"uniform vec4 ourColor;\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-    "color = vertexColor; \n"
-"}";
-
-
-
-
-//const char *vs =
-//"#version 330 core           \n"
-//"layout(location=0) in vec3 pos; \n"
-//"void main(){                    \n"
-//"        gl_Position = vec4(pos.x,pos.y,pos.z,1.0);}";
-
-
-
-//const char *fs = "#version 330 core  \nout vec4 color;void main(){color=vec4(1.0f, 0.5f, 0.2f, 1.0f);}";
 
 
 void processInput(GLFWwindow *window)
@@ -147,10 +107,30 @@ int main()
 
 
 
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)0);
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2,2,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(6*sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+
+    unsigned int texBuffer;
+    glGenTextures(1,&texBuffer);
+    glBindTexture(GL_TEXTURE_2D,texBuffer);
+    int width,height,nrChannels;
+    stbi_set_flip_vertically_on_load(true);
+    unsigned char*data = stbi_load("D:/workspace/MyPractice/OpenGL_shader/texture/jpg.jpg",&width,&height,&nrChannels,0);
+    if(data)
+    {
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,width,height,0,GL_RGB,GL_UNSIGNED_BYTE,data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout<<"load error."<<std::endl;
+    }
+    stbi_image_free(data);
 
 
     while (!glfwWindowShouldClose(window)) {
@@ -159,6 +139,7 @@ int main()
         glClearColor(0.2,0.5,0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glBindTexture(GL_TEXTURE_2D, texBuffer);
         glBindVertexArray(VAO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
 

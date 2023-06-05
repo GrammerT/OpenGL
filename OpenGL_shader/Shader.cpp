@@ -21,7 +21,7 @@ Shader::Shader(const char *vertexPath,const char* fragmentPath)
     vertexFile.open(vertexPath);
     frageFile.open(fragmentPath);
 
-    std::cout<<"vertex file is open: "<<vertexFile.is_open();
+    std::cout<<"vertex file is open: "<<vertexFile.is_open()<<std::endl;
     if(!vertexFile.is_open())
     {
 
@@ -29,7 +29,7 @@ Shader::Shader(const char *vertexPath,const char* fragmentPath)
     vertexStream<<vertexFile.rdbuf();
     vertexString = vertexStream.str();
     vertexSource = vertexString.c_str();
-    std::cout<<"frag file is open: "<<frageFile.is_open();
+    std::cout<<"frag file is open: "<<frageFile.is_open()<<std::endl;
     if(!frageFile.is_open())
     {
 
@@ -80,7 +80,7 @@ void Shader::checkCompileErrors(unsigned int ID, std::string type)
         if(!success)
         {
             glGetShaderInfoLog(ID,512,NULL,infolog);
-            std::cout<<"shader compile error:"<<infolog<<std::endl;
+            std::cout<<type<<" shader compile error:"<<infolog<<std::endl;
         }
     }
     else
@@ -89,7 +89,7 @@ void Shader::checkCompileErrors(unsigned int ID, std::string type)
         if(!success)
         {
             glGetProgramInfoLog(ID,512,NULL,infolog);
-            std::cout<<"program link error:"<<std::endl;
+            std::cout<<"program link error:"<<infolog<<std::endl;
         }
     }
 }
