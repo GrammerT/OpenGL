@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 
 #include "GL/glew.h"
-#include "glfw3.h"
+#include "GLFW/glfw3.h"
 #include "Shader.h"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -125,8 +125,8 @@ int main()
 //    glCullFace(GL_FRONT);
 //    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 
-    Shader *shader =new Shader("D:\\workspace\\QTPro\\OpenGL_shader\\vertext.vert",
-                               "D:\\workspace\\QTPro\\OpenGL_shader\\fragment.frag");
+    Shader *shader =new Shader("D:/workspace/MyPractice/OpenGL_shader/vertext.vert",
+                               "D:/workspace/MyPractice/OpenGL_shader/fragment.frag");
 
 
     uint32_t VAO;
