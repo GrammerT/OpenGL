@@ -4,6 +4,7 @@ QT += opengl
 INCLUDEPATH += "$$PWD/OpenglLib/glut/include"
 INCLUDEPATH += "$$PWD/OpenglLib/glew-2.1.0/include"
 INCLUDEPATH += "$$PWD/OpenglLib/glfw-3.3.8/include"
+INCLUDEPATH += "$$PWD/OpenglLib/glm/include"
 
 
 
