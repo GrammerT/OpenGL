@@ -4,6 +4,10 @@
 #include "GLFW/glfw3.h"
 #include "Shader.h"
 
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -50,6 +54,15 @@ int main()
 //        std::cout<<(int)data[i]<<std::endl;
 //    }
 //    stbi_image_free(data);
+
+
+    glm::vec4 vec(1.0f,0,0,1.0f);
+    glm::mat4 trans=glm::mat4(1.0f);
+    trans = glm::translate(trans,glm::vec3(1.0,1.0,-10.0));
+    vec = trans*vec;
+    std::cout<<" "<<vec.x<<" "<<vec.y<<" "<<vec.z;
+
+
 
     glfwInit();
 
