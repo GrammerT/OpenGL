@@ -17,12 +17,58 @@ using namespace std;
 
 
 
-GLfloat vertices[] = {
-//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
-     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
-    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
+//GLfloat vertices[] = {
+////     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+//     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
+//     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
+//    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
+//    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
+//};
+
+
+
+GLfloat  vertices[] = {
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
 
 
@@ -56,13 +102,11 @@ int main()
 //    stbi_image_free(data);
 
 
-    glm::vec4 vec(1.0f,0,0,1.0f);
-    glm::mat4 trans=glm::mat4(1.0f);
-    trans = glm::translate(trans,glm::vec3(1.0,1.0,-10.0));
-    vec = trans*vec;
-    std::cout<<" "<<vec.x<<" "<<vec.y<<" "<<vec.z;
-
-
+//    glm::vec4 vec(1.0f,0,0,1.0f);
+//    glm::mat4 trans=glm::mat4(1.0f);
+//    trans = glm::translate(trans,glm::vec3(1.0,1.0,-10.0));
+//    vec = trans*vec;
+//    std::cout<<" "<<vec.x<<" "<<vec.y<<" "<<vec.z;
 
     glfwInit();
 
@@ -120,12 +164,12 @@ int main()
 
 
 
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)0);
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(3*sizeof(float)));
+//    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(3*sizeof(float)));
+//    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2,2,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(6*sizeof(float)));
-    glEnableVertexAttribArray(2);
 
 
     unsigned int texBuffer;
@@ -146,28 +190,42 @@ int main()
     stbi_image_free(data);
 
 
-    while (!glfwWindowShouldClose(window)) {
-        glm::mat4 transMat;
-        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
-        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
-        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
-        processInput(window);
 
+
+    glm::mat4 viewMat;
+    viewMat=glm::translate(viewMat,glm::vec3(0.0,0.0,-3.0f));
+
+    glm::mat4 projMat;
+    projMat = glm::perspectiveFov<double>(45.0f,800.0,600.0,0.1f,100.f);
+
+    while (!glfwWindowShouldClose(window)) {
+//        glm::mat4 transMat;
+//        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
+//        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
+//        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
+        glm::mat4 modelMat;
+        modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(1.0,0.0,0.0));
+        processInput(window);
         glClearColor(0.2,0.5,0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
-
         glBindTexture(GL_TEXTURE_2D, texBuffer);
-        glBindVertexArray(VAO);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
+
 
         shader->use();
-        auto location = glGetUniformLocation(shader->m_shader_id,"transMat");
-        glUniformMatrix4fv(location,1,GL_FALSE,glm::value_ptr(transMat));
+
+        GLint modelLoc = glGetUniformLocation(shader->m_shader_id, "modelMat");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMat));
+        GLint viewLoc = glGetUniformLocation(shader->m_shader_id, "viewMat");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMat));
+        GLint projLoc = glGetUniformLocation(shader->m_shader_id, "projMat");
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
 
 
-        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
+        glBindVertexArray(VAO);
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
-
+//        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
         glBindVertexArray(0);
         glfwSwapBuffers(window);
         glfwPollEvents();
