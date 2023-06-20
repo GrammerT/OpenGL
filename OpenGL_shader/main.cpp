@@ -153,7 +153,7 @@ int main()
 //    glEnable(GL_CULL_FACE);
 //    glCullFace(GL_FRONT);
 //    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-
+    glEnable(GL_DEPTH_TEST);
     Shader *shader =new Shader("D:/workspace/MyPractice/OpenGL_shader/vertext.vert",
                                "D:/workspace/MyPractice/OpenGL_shader/fragment.frag");
 
@@ -219,7 +219,7 @@ int main()
 
         processInput(window);
         glClearColor(0.2,0.5,0,1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         glBindTexture(GL_TEXTURE_2D, texBuffer);
 
 
@@ -237,8 +237,8 @@ int main()
         {
             glm::mat4 modelMat;
             modelMat = glm::translate(modelMat,cubePositions[i]);
-            modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(0.0,0.0,1.0));
-            modelMat = glm::scale(modelMat,glm::vec3(2.01,2.01,2.01));
+            modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(1.0,0.0,1.0));
+            modelMat = glm::scale(modelMat,glm::vec3(1.01,1.01,1.01));
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMat));
 
             glBindVertexArray(VAO);
