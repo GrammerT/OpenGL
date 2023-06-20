@@ -6,6 +6,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
 SOURCES += \
+        Camera.cpp \
         Shader.cpp \
         main.cpp
 
@@ -13,6 +14,7 @@ SOURCES += \
 include("../dependence/dependence.pri")
 
 HEADERS += \
+    Camera.h \
     Shader.h \
     stb_image.h
 
