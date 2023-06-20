@@ -147,6 +147,10 @@ int main()
 
 
     while (!glfwWindowShouldClose(window)) {
+        glm::mat4 transMat;
+        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
+        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
+        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
         processInput(window);
 
         glClearColor(0.2,0.5,0,1.0);
@@ -157,8 +161,13 @@ int main()
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
 
         shader->use();
+        auto location = glGetUniformLocation(shader->m_shader_id,"transMat");
+        glUniformMatrix4fv(location,1,GL_FALSE,glm::value_ptr(transMat));
+
 
         glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
+
+
         glBindVertexArray(0);
         glfwSwapBuffers(window);
         glfwPollEvents();
