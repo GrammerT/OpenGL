@@ -77,6 +77,18 @@ uint32_t indices[]={
     2,3,0
 };
 
+glm::vec3 cubePositions[] = {
+  glm::vec3( 0.0f,  0.0f,  0.0f),
+  glm::vec3( 2.0f,  5.0f, -15.0f),
+  glm::vec3(-1.5f, -2.2f, -2.5f),
+  glm::vec3(-3.8f, -2.0f, -12.3f),
+  glm::vec3( 2.4f, -0.4f, -3.5f),
+  glm::vec3(-1.7f,  3.0f, -7.5f),
+  glm::vec3( 1.3f, -2.0f, -2.5f),
+  glm::vec3( 1.5f,  2.0f, -2.5f),
+  glm::vec3( 1.5f,  0.2f, -1.5f),
+  glm::vec3(-1.3f,  1.0f, -1.5f)
+};
 
 
 void processInput(GLFWwindow *window)
@@ -203,8 +215,8 @@ int main()
 //        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
 //        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
 //        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
-        glm::mat4 modelMat;
-        modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(1.0,0.0,0.0));
+
+
         processInput(window);
         glClearColor(0.2,0.5,0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -214,17 +226,28 @@ int main()
         shader->use();
 
         GLint modelLoc = glGetUniformLocation(shader->m_shader_id, "modelMat");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMat));
+
         GLint viewLoc = glGetUniformLocation(shader->m_shader_id, "viewMat");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMat));
         GLint projLoc = glGetUniformLocation(shader->m_shader_id, "projMat");
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
 
 
-        glBindVertexArray(VAO);
-//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        for(int i=0;i<10;++i)
+        {
+            glm::mat4 modelMat;
+            modelMat = glm::translate(modelMat,cubePositions[i]);
+            modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(0.0,0.0,1.0));
+            modelMat = glm::scale(modelMat,glm::vec3(2.01,2.01,2.01));
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMat));
 
+            glBindVertexArray(VAO);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+
+
+
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
 //        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
         glBindVertexArray(0);
         glfwSwapBuffers(window);
