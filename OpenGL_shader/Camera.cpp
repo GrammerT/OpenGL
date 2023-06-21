@@ -35,9 +35,14 @@ glm::mat4 Camera::getViewMat()
 
 void Camera::processMouseEvent(float deltX, float deltY)
 {
-    m_pitch+=deltY;
-    m_yaw+=deltX;
+    m_pitch-=deltY*0.002;
+    m_yaw+=deltX*0.002;
     updateCameraVectors();
+}
+
+void Camera::updateCameraPos()
+{
+    m_position+=(m_forward * m_speed_z * 0.01f);
 }
 
 void Camera::updateCameraVectors()

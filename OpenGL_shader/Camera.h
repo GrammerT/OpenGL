@@ -13,6 +13,8 @@ public:
 
     void processMouseEvent(float deltX,float deltY);
 
+    void updateCameraPos();
+    float m_speed_z = 0.0;
 private:
     void updateCameraVectors();
 

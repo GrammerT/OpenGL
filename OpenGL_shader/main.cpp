@@ -107,6 +107,20 @@ void processInput(GLFWwindow *window)
     {
         glfwSetWindowShouldClose(window,true);
     }
+
+    if(glfwGetKey(window,GLFW_KEY_W)==GLFW_PRESS)
+    {
+        camera.m_speed_z=1.0;
+    }
+    else if(glfwGetKey(window,GLFW_KEY_S)==GLFW_PRESS)
+    {
+        camera.m_speed_z=-1.0;
+    }
+    else
+    {
+        camera.m_speed_z = 0;
+    }
+
 }
 
 bool first_mouse = true;
@@ -283,6 +297,7 @@ int main()
         glBindVertexArray(0);
         glfwSwapBuffers(window);
         glfwPollEvents();
+        camera.updateCameraPos();
     }
 
     glfwTerminate();
