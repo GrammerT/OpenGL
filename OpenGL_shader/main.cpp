@@ -257,7 +257,7 @@ int main()
             GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
             glUniform3f(objLoc,1.0f,0.5f,0.31f);
             GLint ambineLoc = glGetUniformLocation(shader->m_shader_id, "ambineColor");
-            glUniform3f(ambineLoc,1.0f,1.0f,1.0f);
+            glUniform3f(ambineLoc,1.0f,1.0f,0.0f);
 
 
 

@@ -11,6 +11,5 @@ uniform vec3 ambineColor;
 
 void main()
 {
-//   fragColor = texture(ourTexture,texCoord);
-    fragColor = vec4(objColor*ambineColor,1.0f);
+    fragColor = vec4(objColor*ambineColor,1.0f)*texture(ourTexture,texCoord);
 }
