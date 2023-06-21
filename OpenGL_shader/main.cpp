@@ -253,6 +253,13 @@ int main()
             glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMat));
             GLint projLoc = glGetUniformLocation(shader->m_shader_id, "projMat");
             glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
+            //! about light.
+            GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
+            glUniform3f(objLoc,1.0f,0.5f,0.31f);
+            GLint ambineLoc = glGetUniformLocation(shader->m_shader_id, "ambineColor");
+            glUniform3f(ambineLoc,1.0f,1.0f,1.0f);
+
+
 
             //! set Model.
             glBindVertexArray(VAO);
