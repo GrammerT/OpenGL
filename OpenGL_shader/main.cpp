@@ -92,6 +92,15 @@ glm::vec3 cubePositions[] = {
 };
 
 
+GLfloat radius = 19.0f;
+GLfloat camX = sin(glfwGetTime()) * radius;
+GLfloat camZ = cos(glfwGetTime()) * radius;
+//        Camera camera(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
+
+Camera camera(glm::vec3(0,0,3),glm::radians(-5.0f),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
+
+
+
 void processInput(GLFWwindow *window)
 {
     if(glfwGetKey(window,GLFW_KEY_ESCAPE)==GLFW_PRESS)
@@ -100,6 +109,26 @@ void processInput(GLFWwindow *window)
     }
 }
 
+bool first_mouse = true;
+double m_last_xpos,m_last_ypos;
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if(first_mouse)
+    {
+        m_last_ypos = ypos;
+        m_last_xpos = xpos;
+        first_mouse = false;
+    }
+    double deltX,deltY;
+    deltX = xpos- m_last_xpos;
+    deltY = m_last_ypos-ypos;
+
+    m_last_xpos = xpos;
+    m_last_ypos = ypos;
+
+    camera.processMouseEvent(deltX,deltY);
+}
 
 
 int main()
@@ -140,6 +169,10 @@ int main()
 
 
     glfwMakeContextCurrent(window);
+
+    glfwSetInputMode(window,GLFW_CURSOR,GLFW_CURSOR_DISABLED);
+
+    glfwSetCursorPosCallback(window,mouse_callback);
 
     glewExperimental = true;
     if(glewInit()!=GLEW_OK)
@@ -213,13 +246,6 @@ int main()
 //        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
 //        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
 //        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
-
-        GLfloat radius = 19.0f;
-        GLfloat camX = sin(glfwGetTime()) * radius;
-        GLfloat camZ = cos(glfwGetTime()) * radius;
-//        Camera camera(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
-
-        Camera camera(glm::vec3(0,0,3),glm::radians(-5.0f),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
 
 
         processInput(window);

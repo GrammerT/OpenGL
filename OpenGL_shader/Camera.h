@@ -11,6 +11,11 @@ public:
 
     glm::mat4 getViewMat();
 
+    void processMouseEvent(float deltX,float deltY);
+
+private:
+    void updateCameraVectors();
+
 
 private:
     glm::vec3 m_position;
@@ -18,6 +23,9 @@ private:
     glm::vec3 m_forward;//! 指向 y
     glm::vec3 m_right_direct;//! 右轴 x
     glm::vec3 m_up_direct;//! 上轴 z
+
+    float m_pitch;
+    float m_yaw;
 
     glm::mat4 m_lookAt_mat4 ;
 };
