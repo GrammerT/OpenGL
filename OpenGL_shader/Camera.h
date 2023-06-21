@@ -7,6 +7,8 @@ class Camera
 {
 public:
     explicit Camera(glm::vec3 position,glm::vec3 target,glm::vec3 worldUP);
+    explicit Camera(glm::vec3 position,float pitch,float yaw,glm::vec3 worldUP);
+
     glm::mat4 getViewMat();
 
 

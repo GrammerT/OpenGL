@@ -217,7 +217,9 @@ int main()
         GLfloat radius = 19.0f;
         GLfloat camX = sin(glfwGetTime()) * radius;
         GLfloat camZ = cos(glfwGetTime()) * radius;
-        Camera camera(glm::vec3(camX,0,camZ),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
+//        Camera camera(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
+
+        Camera camera(glm::vec3(0,0,3),glm::radians(-5.0f),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
 
 
         processInput(window);
