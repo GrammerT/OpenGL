@@ -3,6 +3,7 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 #include "Shader.h"
+#include "Camera.h"
 
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
@@ -204,9 +205,6 @@ int main()
 
 
 
-    glm::mat4 viewMat;
-    viewMat=glm::translate(viewMat,glm::vec3(0.0,0.0,-3.0f));
-
     glm::mat4 projMat;
     projMat = glm::perspectiveFov<double>(45.0f,800.0,600.0,0.1f,100.f);
 
@@ -215,6 +213,11 @@ int main()
 //        transMat = glm::translate(transMat,glm::vec3(-0.3,0,0));
 //        transMat = glm::rotate(transMat,(float)glfwGetTime(),glm::vec3(0,0,1));//! 绕X轴
 //        transMat = glm::scale(transMat,glm::vec3(1,1.0f,0));
+
+        GLfloat radius = 19.0f;
+        GLfloat camX = sin(glfwGetTime()) * radius;
+        GLfloat camZ = cos(glfwGetTime()) * radius;
+        Camera camera(glm::vec3(camX,0,camZ),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
 
 
         processInput(window);
@@ -228,7 +231,7 @@ int main()
         GLint modelLoc = glGetUniformLocation(shader->m_shader_id, "modelMat");
 
         GLint viewLoc = glGetUniformLocation(shader->m_shader_id, "viewMat");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMat));
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera.getViewMat()));
         GLint projLoc = glGetUniformLocation(shader->m_shader_id, "projMat");
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
 
