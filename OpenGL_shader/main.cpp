@@ -257,6 +257,8 @@ int main()
             //! about light.
             GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
             glUniform3f(objLoc,1.0f,0.5f,0.31f);
+            GLint ambientLoc = glGetUniformLocation(shader->m_shader_id, "ambientColor");
+            glUniform3f(ambientLoc,1.0f,0.0f,0.0f);
             GLint lightColorLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
             glUniform3f(lightColorLoc,1.0f,1.0f,1.0f);
             GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
