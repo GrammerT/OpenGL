@@ -210,8 +210,8 @@ int main()
 
     glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)(3*sizeof(float)));
-    glEnableVertexAttribArray(1);
+//    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)(3*sizeof(float)));
+//    glEnableVertexAttribArray(1);
     //! end load model.
     auto texBuffer = createTexture("D:/workspace/MyPractice/OpenGL_shader/texture/jpg.jpg",GL_RGB,GL_RGB,0);
 
@@ -226,7 +226,7 @@ int main()
     //! rend loop
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
-        glClearColor(0.2,0.5,0,1.0);
+//        glClearColor(0.2,0.5,0,1.0);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
         for(int i=0;i<10;++i)
@@ -256,8 +256,8 @@ int main()
             //! about light.
             GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
             glUniform3f(objLoc,1.0f,0.5f,0.31f);
-            GLint ambineLoc = glGetUniformLocation(shader->m_shader_id, "ambineColor");
-            glUniform3f(ambineLoc,1.0f,1.0f,0.0f);
+            GLint lightLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
+            glUniform3f(lightLoc,1.0f,1.0f,0.0f);
 
 
 
