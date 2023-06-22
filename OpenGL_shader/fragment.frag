@@ -15,9 +15,9 @@ void main()
 //    vec3 ambient = ambientColor*lightColor;
 
     vec3 lightDire = normalize(lightPos-fragPos);
-    float diffuse = max(dot(lightDire,fNormal),0);
+    vec3 diffuse = max(dot(lightDire,fNormal),0)*lightColor;
 
 //    fragColor = vec4(ambient,1.0f);
-    fragColor = vec4(diffuse*objColor+ambientColor*lightColor,1.0f);
+    fragColor = vec4(diffuse*objColor+ambientColor*objColor,1.0f);
 
 }
