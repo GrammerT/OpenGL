@@ -42,7 +42,7 @@ void Camera::processMouseEvent(float deltX, float deltY)
 
 void Camera::updateCameraPos()
 {
-    m_position+=(m_forward * m_speed_z * 0.01f+m_right_direct*m_speed_x*0.01f+m_up_direct*m_speed_y*0.01f);
+    m_position+=(m_forward * m_speed_z * 0.005f+m_right_direct*m_speed_x*0.005f+m_up_direct*m_speed_y*0.005f);
 }
 
 void Camera::updateCameraVectors()

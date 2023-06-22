@@ -282,13 +282,13 @@ int main()
             glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
             //! about light.
             GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
-            glUniform3f(objLoc,0.0f,1.0f,0.31f);
+            glUniform3f(objLoc,1.0f,0.5f,0.31f);
             GLint ambientLoc = glGetUniformLocation(shader->m_shader_id, "ambientColor");
-            glUniform3f(ambientLoc,1.0f,0.0f,0.0f);
+            glUniform3f(ambientLoc,0.2f,0.1f,0.0f);
             GLint lightColorLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
             glUniform3f(lightColorLoc,1.0f,1.0f,1.0f);
             GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
-            glUniform3f(lightPosLoc,10.0f,10.0f,5.0f);
+            glUniform3f(lightPosLoc,10.0f,10.0f,-5.0f);
             GLint CameraPosLoc = glGetUniformLocation(shader->m_shader_id, "cameraPos");
             glUniform3f(CameraPosLoc,camera.m_position.x,camera.m_position.y,camera.m_position.z);
             //! set matrial
@@ -299,9 +299,9 @@ int main()
             GLint material = glGetUniformLocation(shader->m_shader_id, "material.ambient");
             glUniform3f(material,1.0f,1.0f,1.0f);
             material = glGetUniformLocation(shader->m_shader_id, "material.diffuse");
-            glUniform3f(material,1.0f,1.0f,1.0f);
+            glUniform3f(material,0.0f,0.0f,1.0f);
             material = glGetUniformLocation(shader->m_shader_id, "material.speclar");
-            glUniform3f(material,1.0f,1.0f,1.0f);
+            glUniform3f(material,1.0f,0.0f,0.0f);
             material = glGetUniformLocation(shader->m_shader_id, "material.shininess");
             glUniform1f(material,32.0f);
 
