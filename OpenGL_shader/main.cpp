@@ -109,11 +109,11 @@ void processInput(GLFWwindow *window)
 
     if(glfwGetKey(window,GLFW_KEY_A)==GLFW_PRESS)
     {
-        camera.m_speed_x=1.0;
+        camera.m_speed_x=-1.0;
     }
     else if(glfwGetKey(window,GLFW_KEY_D)==GLFW_PRESS)
     {
-        camera.m_speed_x=-1.0;
+        camera.m_speed_x=1.0;
     }
     else
     {
