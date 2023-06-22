@@ -291,8 +291,19 @@ int main()
             glUniform3f(lightPosLoc,10.0f,10.0f,5.0f);
             GLint CameraPosLoc = glGetUniformLocation(shader->m_shader_id, "cameraPos");
             glUniform3f(CameraPosLoc,camera.m_position.x,camera.m_position.y,camera.m_position.z);
-
-
+            //! set matrial
+//            vec3 ambient;
+//            vec3 diffuse;
+//            vec3 speclar;
+//            float shininess;
+            GLint material = glGetUniformLocation(shader->m_shader_id, "material.ambient");
+            glUniform3f(material,1.0f,1.0f,1.0f);
+            material = glGetUniformLocation(shader->m_shader_id, "material.diffuse");
+            glUniform3f(material,1.0f,1.0f,1.0f);
+            material = glGetUniformLocation(shader->m_shader_id, "material.speclar");
+            glUniform3f(material,1.0f,1.0f,1.0f);
+            material = glGetUniformLocation(shader->m_shader_id, "material.shininess");
+            glUniform1f(material,32.0f);
 
 
 
