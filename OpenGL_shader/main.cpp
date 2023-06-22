@@ -9,6 +9,8 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 
+#include "Material.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -223,6 +225,13 @@ int main()
                                "D:/workspace/MyPractice/OpenGL_shader/fragment.frag");
     //! end
 
+    //! create Material
+    Material *myMaterial =new Material(shader,
+                      glm::vec3(1.0f,1.0f,1.0f),
+                      glm::vec3(1.0f,1.0f,1.0f),
+                      glm::vec3(1.0f,1.0f,1.0f),
+                      32.0f);
+
 
     //! init and load Model to VAO & VBO
     uint32_t VAO;
@@ -296,14 +305,11 @@ int main()
 //            vec3 diffuse;
 //            vec3 speclar;
 //            float shininess;
-            GLint material = glGetUniformLocation(shader->m_shader_id, "material.ambient");
-            glUniform3f(material,1.0f,1.0f,1.0f);
-            material = glGetUniformLocation(shader->m_shader_id, "material.diffuse");
-            glUniform3f(material,0.0f,0.0f,1.0f);
-            material = glGetUniformLocation(shader->m_shader_id, "material.speclar");
-            glUniform3f(material,1.0f,0.0f,0.0f);
-            material = glGetUniformLocation(shader->m_shader_id, "material.shininess");
-            glUniform1f(material,32.0f);
+            shader->setUniform3f("material.ambient",myMaterial->m_ambient);
+            shader->setUniform3f("material.diffuse",myMaterial->m_diffuse);
+            shader->setUniform3f("material.speclar",myMaterial->m_specular);
+            shader->setUniform1f("material.shininess",myMaterial->m_shininess);
+
 
 
 

@@ -1,4 +1,4 @@
-﻿#include "Shader.h"
+#include "Shader.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -68,6 +68,16 @@ Shader::Shader(const char *vertexPath,const char* fragmentPath)
 void Shader::use()
 {
     glUseProgram(m_shader_id);
+}
+
+void Shader::setUniform3f(const char *name, glm::vec3 param)
+{
+    glUniform3f(glGetUniformLocation(m_shader_id,name),param.x,param.y,param.z);
+}
+
+void Shader::setUniform1f(const char *name, float value)
+{
+    glUniform1f(glGetUniformLocation(m_shader_id,name),value);
 }
 
 void Shader::checkCompileErrors(unsigned int ID, std::string type)

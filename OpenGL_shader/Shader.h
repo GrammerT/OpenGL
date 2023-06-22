@@ -1,6 +1,9 @@
-﻿#ifndef SHADER_H
+#ifndef SHADER_H
 #define SHADER_H
 #include <string>
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
 
 class Shader
 {
@@ -9,7 +12,8 @@ public:
 
     void use();
 
-
+    void setUniform3f(const char* name,glm::vec3 param);
+    void setUniform1f(const char*name ,float value);
     std::string vertexString;
     std::string fragString;
     const char *vertexSource;
