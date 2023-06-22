@@ -262,8 +262,8 @@ int main()
 
             //! set model matrix.
             modelMat = glm::translate(glm::mat4(1.0f),cubePositions[i]);
-            modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(1.0,0.0,1.0));
-            modelMat = glm::scale(modelMat,glm::vec3(1.01,1.01,1.01));
+//            modelMat = glm::rotate(modelMat,(float)glfwGetTime(),glm::vec3(1.0,0.0,1.0));
+//            modelMat = glm::scale(modelMat,glm::vec3(1.01,1.01,1.01));
 
             //! set view and projMat here if you want.
 
@@ -289,6 +289,10 @@ int main()
             glUniform3f(lightColorLoc,1.0f,1.0f,1.0f);
             GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
             glUniform3f(lightPosLoc,10.0f,10.0f,5.0f);
+            GLint CameraPosLoc = glGetUniformLocation(shader->m_shader_id, "cameraPos");
+            glUniform3f(CameraPosLoc,camera.m_position.x,camera.m_position.y,camera.m_position.z);
+
+
 
 
 

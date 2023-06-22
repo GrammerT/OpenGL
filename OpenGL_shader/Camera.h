@@ -22,7 +22,7 @@ private:
     void updateCameraVectors();
 
 
-private:
+public:
     glm::vec3 m_position;
     glm::vec3 m_worldUp;
     glm::vec3 m_forward;//! 指向 y
