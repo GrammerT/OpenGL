@@ -6,7 +6,7 @@ Camera::Camera(glm::vec3 position,glm::vec3 target,glm::vec3 worldUP)
     m_worldUp = worldUP;
     m_forward = glm::normalize(target-position);
     m_right_direct =glm::normalize(glm::cross(m_forward,m_worldUp));
-    m_up_direct = glm::normalize(glm::cross(m_forward,m_right_direct));
+    m_up_direct = glm::normalize(glm::cross(m_right_direct,m_forward));
 
 
 }
@@ -23,7 +23,7 @@ Camera::Camera(glm::vec3 position, float pitch, float yaw, glm::vec3 worldUP)
     m_forward = glm::normalize(m_forward);
 
     m_right_direct =glm::normalize(glm::cross(m_forward,m_worldUp));
-    m_up_direct = glm::normalize(glm::cross(m_forward,m_right_direct));
+    m_up_direct = glm::normalize(glm::cross(m_right_direct,m_forward));
 
 }
 
@@ -42,7 +42,7 @@ void Camera::processMouseEvent(float deltX, float deltY)
 
 void Camera::updateCameraPos()
 {
-    m_position+=(m_forward * m_speed_z * 0.01f);
+    m_position+=(m_forward * m_speed_z * 0.01f+m_right_direct*m_speed_x*0.01f+m_up_direct*m_speed_y*0.01f);
 }
 
 void Camera::updateCameraVectors()
