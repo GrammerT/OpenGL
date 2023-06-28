@@ -2,7 +2,7 @@
 
 struct Material{
     vec3 ambient;
-    vec3 diffuse;
+    sampler2D diffuse;
     vec3 speclar;
     float shininess;
 };
@@ -17,6 +17,7 @@ uniform vec3 cameraPos;
 
 in vec3 fragPos;
 in vec3 fNormal;
+in vec2 fTexCoord;
 
 out vec4 fragColor;
 
@@ -32,8 +33,8 @@ void main()
     vec3 spcular = material.speclar * specularAmount*lightColor;
 
     //! diffuse
-    vec3 diffuse = material.diffuse*max(dot(lightDire,fNormal),0)*lightColor;
-
+    //vec3 diffuse = material.diffuse*max(dot(lightDire,fNormal),0)*lightColor;
+    vec3 diffuse = texture(material.diffuse,fTexCoord).rgb*max(dot(lightDire,fNormal),0)*lightColor;
     //! ambient
     vec3 ambientVec = material.ambient * ambientColor;
 

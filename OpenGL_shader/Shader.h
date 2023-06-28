@@ -14,6 +14,7 @@ public:
 
     void setUniform3f(const char* name,glm::vec3 param);
     void setUniform1f(const char*name ,float value);
+    void setUniform1i(const char *name ,int slot);
     std::string vertexString;
     std::string fragString;
     const char *vertexSource;
