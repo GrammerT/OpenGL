@@ -1,6 +1,6 @@
 #include "Material.h"
 
-Material::Material(Shader *shader, unsigned int diffuse, glm::vec3 ambient, glm::vec3 specular, float shininess)
+Material::Material(Shader *shader, unsigned int diffuse, glm::vec3 ambient, unsigned int specular, float shininess)
 {
     m_shader = shader;
     m_diffuse = diffuse;

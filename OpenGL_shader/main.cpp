@@ -228,9 +228,9 @@ int main()
 
     //! create Material
     Material *myMaterial =new Material(shader,
-                      createTexture("D:/workspace/MyPractice/OpenGL_shader/texture/jpg.jpg",GL_RGB,GL_RGB,0),
+                      createTexture("D:/workspace/MyPractice/OpenGL_shader/texture/container2.png",GL_RGBA,GL_RGBA,0),
                       glm::vec3(1.0f,1.0f,1.0f),
-                      glm::vec3(1.0f,1.0f,1.0f),
+                      createTexture("D:/workspace/MyPractice/OpenGL_shader/texture/container2_specular.png",GL_RGBA,GL_RGBA,1),
                       32.0f);
 
 
@@ -282,8 +282,11 @@ int main()
             //! set Material -> shader program.
             shader->use();
             //! set Material -> texture
-//            glActiveTexture(GL_TEXTURE0);
-//            glBindTexture(GL_TEXTURE_2D, texBuffer);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, myMaterial->m_diffuse);
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, myMaterial->m_specular);
+
             //! set Material -> uniforms.
             GLint modelLoc = glGetUniformLocation(shader->m_shader_id, "modelMat");
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMat));
@@ -294,9 +297,9 @@ int main()
             glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMat));
             //! about light.
             GLint objLoc = glGetUniformLocation(shader->m_shader_id, "objColor");
-            glUniform3f(objLoc,1.0f,0.5f,0.31f);
+            glUniform3f(objLoc,0.2f,0.2f,0.2f);
             GLint ambientLoc = glGetUniformLocation(shader->m_shader_id, "ambientColor");
-            glUniform3f(ambientLoc,0.2f,0.1f,0.0f);
+            glUniform3f(ambientLoc,1.0f,1.0f,1.0f);
             GLint lightColorLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
             glUniform3f(lightColorLoc,1.0f,1.0f,1.0f);
             GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
@@ -309,9 +312,8 @@ int main()
 //            vec3 speclar;
 //            float shininess;
             shader->setUniform3f("material.ambient",myMaterial->m_ambient);
-//            shader->setUniform3f("material.diffuse",myMaterial->m_diffuse);
             shader->setUniform1i("material.diffuse",0);
-            shader->setUniform3f("material.speclar",myMaterial->m_specular);
+            shader->setUniform1i("material.speclar",1);
             shader->setUniform1f("material.shininess",myMaterial->m_shininess);
 
             //! set Model.

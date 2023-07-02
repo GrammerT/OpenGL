@@ -10,12 +10,11 @@
 class Material
 {
 public:
-    Material(Shader *shader,unsigned int diffuse,glm::vec3 ambient,glm::vec3 specular,float shininess);
-
+    Material(Shader *shader,unsigned int diffuse,glm::vec3 ambient,unsigned int specular,float shininess);
 
     unsigned int m_diffuse;
     glm::vec3 m_ambient;
-    glm::vec3 m_specular;
+    unsigned int m_specular;
     float m_shininess;
     Shader *m_shader;
 };
