@@ -14,6 +14,9 @@ public:
     glm::vec3 m_color;
     glm::vec3 m_direction;
 
+    float m_constant=1.0f;
+    float m_linear=0.09f;
+    float m_quadratic = 0.03f;
 
 };
 

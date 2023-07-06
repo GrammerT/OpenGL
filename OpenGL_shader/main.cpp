@@ -87,7 +87,7 @@ GLfloat camZ = cos(glfwGetTime()) * radius;
 //        Camera camera(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
 
 Camera camera(glm::vec3(0,0,3),glm::radians(-5.0f),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
-LightDirection light(glm::vec3(10.0f,10.0f,-5.0f),glm::vec3(glm::radians(45.0f),glm::radians(45.0),glm::radians(0.0)),
+LightPoint light(glm::vec3(10.0f,10.0f,-5.0f),glm::vec3(glm::radians(45.0f),glm::radians(45.0),glm::radians(0.0)),
                      glm::vec3(10.0f,0.0f,0.0f));
 
 //! input process.
@@ -304,10 +304,21 @@ int main()
             glUniform3f(ambientLoc,1.0f,1.0f,1.0f);
             GLint lightColorLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
             glUniform3f(lightColorLoc,light.m_color.x,light.m_color.y,light.m_color.z);
-//            GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
-//            glUniform3f(lightPosLoc,light.m_position.x,light.m_position.y,light.m_position.z);
+            GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
+            glUniform3f(lightPosLoc,light.m_position.x,light.m_position.y,light.m_position.z);
             GLint lightDir = glGetUniformLocation(shader->m_shader_id, "lightDir");
             glUniform3f(lightDir,light.m_direction.x,light.m_direction.y,light.m_direction.z);
+
+//            float constant;
+//            float linear;
+//            float quadratic;
+            GLint lightCon = glGetUniformLocation(shader->m_shader_id, "lightP.constant");
+            GLint lightConline = glGetUniformLocation(shader->m_shader_id, "lightP.linear");
+            GLint lightqua = glGetUniformLocation(shader->m_shader_id, "lightP.quadratic");
+
+            glUniform1f(lightCon,light.m_constant);
+            glUniform1f(lightConline,light.m_linear);
+            glUniform1f(lightqua,light.m_quadratic);
 
 
             GLint CameraPosLoc = glGetUniformLocation(shader->m_shader_id, "cameraPos");
