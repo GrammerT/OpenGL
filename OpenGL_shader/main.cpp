@@ -4,7 +4,8 @@
 #include "GLFW/glfw3.h"
 #include "Shader.h"
 #include "Camera.h"
-
+#include "LightDirection.h"
+#include "LightPoint.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
@@ -86,7 +87,8 @@ GLfloat camZ = cos(glfwGetTime()) * radius;
 //        Camera camera(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1.0f,0));
 
 Camera camera(glm::vec3(0,0,3),glm::radians(-5.0f),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
-
+LightDirection light(glm::vec3(10.0f,10.0f,-5.0f),glm::vec3(glm::radians(45.0f),glm::radians(45.0),glm::radians(0.0)),
+                     glm::vec3(10.0f,0.0f,0.0f));
 
 //! input process.
 
@@ -301,9 +303,13 @@ int main()
             GLint ambientLoc = glGetUniformLocation(shader->m_shader_id, "ambientColor");
             glUniform3f(ambientLoc,1.0f,1.0f,1.0f);
             GLint lightColorLoc = glGetUniformLocation(shader->m_shader_id, "lightColor");
-            glUniform3f(lightColorLoc,1.0f,1.0f,1.0f);
-            GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
-            glUniform3f(lightPosLoc,10.0f,10.0f,-5.0f);
+            glUniform3f(lightColorLoc,light.m_color.x,light.m_color.y,light.m_color.z);
+//            GLint lightPosLoc = glGetUniformLocation(shader->m_shader_id, "lightPos");
+//            glUniform3f(lightPosLoc,light.m_position.x,light.m_position.y,light.m_position.z);
+            GLint lightDir = glGetUniformLocation(shader->m_shader_id, "lightDir");
+            glUniform3f(lightDir,light.m_direction.x,light.m_direction.y,light.m_direction.z);
+
+
             GLint CameraPosLoc = glGetUniformLocation(shader->m_shader_id, "cameraPos");
             glUniform3f(CameraPosLoc,camera.m_position.x,camera.m_position.y,camera.m_position.z);
             //! set matrial
